@@ -3,9 +3,13 @@ import assignment2018.codeprovided.*;
 
 public class TextDisplay implements Display
 {
-
+    //instance variables
     private char[][] board;
     
+    /**
+     * Creates the board with 8 x 8.
+     * Initialises each square with a "."
+     */
     public TextDisplay() 
     {
         board = new char[8][8];
@@ -18,18 +22,22 @@ public class TextDisplay implements Display
             
         }
     }
-	
-    
+	/**
+	 * Run a loop to add all pieces in myPieces to the array
+	 * @param myPieces
+	 */
     public void addPieces(Pieces myPieces)
     {
         for (int piece = 0; piece < myPieces.getNumPieces(); piece++)
         {
             //System.out.println(myPieces.getPiece(piece));
-            System.out.println(myPieces.getPiece(piece).getColour());
             board[myPieces.getPiece(piece).getX()][myPieces.getPiece(piece).getY()] = myPieces.getPiece(piece).getChar();
         }
     }
     
+    /**
+     * Displays the board coordinates and then displays each square of the board.
+     */
     @Override
     public void displayBoard(Pieces myPieces) //really doesn't need this parameter
     {
@@ -47,9 +55,20 @@ public class TextDisplay implements Display
             }
             System.out.println();
         }
+        clearBoard();
 	}
     
-
+    public void clearBoard()
+    {
+        for (int row = 0; row < 8; row++) 
+        {
+            for (int col = 0; col < 8; col++)
+            {
+                board[col][row] = '.';
+            }
+        }
+    }
+        
     public static void main(String[] args) 
     {
         Board board = new Board();

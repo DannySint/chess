@@ -18,14 +18,15 @@ public class Chess
 		//construct display
 		TextDisplay display = new TextDisplay();
 		
-		display.addPieces(shiro);
-		display.addPieces(kuro);
 		
-		display.displayBoard(kuro); //shouldn't need the pieces to display the board.
 		
 		//System.out.println(shiro.getNumPieces());
 		
 		//do while game loop if (kingTaken)
+		    display.addPieces(shiro);
+		    display.addPieces(kuro);
+        
+		    display.displayBoard(kuro); //shouldn't need the pieces to display the board.
 			//- request moves loop ("to" , "from")
 			
 				//get piece
