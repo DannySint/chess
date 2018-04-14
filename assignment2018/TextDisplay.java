@@ -19,13 +19,12 @@ public class TextDisplay implements Display
             {
                 board[col][row] = '.';
             }
-            
         }
     }
-	/**
-	 * Run a loop to add all pieces in myPieces to the array
-	 * @param myPieces
-	 */
+    /**
+     * Run a loop to add all pieces in myPieces to the array
+     * @param myPieces
+     */
     public void addPieces(Pieces myPieces)
     {
         for (int piece = 0; piece < myPieces.getNumPieces(); piece++)
@@ -50,13 +49,12 @@ public class TextDisplay implements Display
             System.out.print(row + " ");
             for (int col = 0; col < 8; col++)
             {
-                
                 System.out.print(board[col][row]);
             }
             System.out.println();
         }
         clearBoard();
-	}
+    }
     
     public void clearBoard()
     {

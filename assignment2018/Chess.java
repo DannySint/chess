@@ -9,10 +9,6 @@ public class Chess
 		//construct board
 		Board board = new Board();
 		
-		//create pieces
-		Pieces shiro = new Pieces(board, 0); //white
-		Pieces kuro = new Pieces(board, 1); //black
-		
 		//construct 2 players
 		
 		//construct display
@@ -23,10 +19,10 @@ public class Chess
 		//System.out.println(shiro.getNumPieces());
 		
 		//do while game loop if (kingTaken)
-		    display.addPieces(shiro);
-		    display.addPieces(kuro);
+		    display.addPieces(board.getWhite());
+		    display.addPieces(board.getBlack());
         
-		    display.displayBoard(kuro); //shouldn't need the pieces to display the board.
+		    display.displayBoard(board.getWhite()); //shouldn't need the pieces to display the board.
 			//- request moves loop ("to" , "from")
 			
 				//get piece
