@@ -19,11 +19,13 @@ public class TextDisplay implements Display
         }
     }
 	
+    
     public void addPieces(Pieces myPieces)
     {
         for (int piece = 0; piece < myPieces.getNumPieces(); piece++)
         {
             //System.out.println(myPieces.getPiece(piece));
+            System.out.println(myPieces.getPiece(piece).getColour());
             board[myPieces.getPiece(piece).getX()][myPieces.getPiece(piece).getY()] = myPieces.getPiece(piece).getChar();
         }
     }
@@ -43,7 +45,6 @@ public class TextDisplay implements Display
                 
                 System.out.print(board[col][row]);
             }
-            
             System.out.println();
         }
 	}
@@ -52,10 +53,13 @@ public class TextDisplay implements Display
     public static void main(String[] args) 
     {
         Board board = new Board();
-        Pieces myPieces = new Pieces(board, 0);
+        Pieces kuro = new Pieces(board, 0);
+        Pieces shiro = new Pieces(board, 1);
         
         TextDisplay display = new TextDisplay();
-        display.addPieces(myPieces);
-        display.displayBoard(myPieces);
+        display.addPieces(kuro);
+        display.addPieces(shiro);
+        
+        display.displayBoard(shiro);
     }
 }

@@ -10,8 +10,8 @@ public class Chess
 		Board board = new Board();
 		
 		//create pieces
-		Pieces shiro = new Pieces(board, 'w'); //white
-		Pieces kuro = new Pieces(board, 'b'); //black
+		Pieces shiro = new Pieces(board, 0); //white
+		Pieces kuro = new Pieces(board, 1); //black
 		
 		//construct 2 players
 		
@@ -21,7 +21,7 @@ public class Chess
 		display.addPieces(shiro);
 		display.addPieces(kuro);
 		
-		display.displayBoard(shiro); //shouldn't need the pieces to display the board.
+		display.displayBoard(kuro); //shouldn't need the pieces to display the board.
 		
 		//System.out.println(shiro.getNumPieces());
 		
