@@ -36,13 +36,18 @@ public class Board
 	//return piece at particular location
 	public Piece getPiece(int x, int y) 
 	{
-		if (!occupied()) {return ?;}
-		else {}
+		return null;
+		//if (!occupied()) {return ?;} else {}
 	}
 	
 	//returns state of board
 	public Piece[][] returnBoard() {return board;}
 	
 	public static void main(String[] args) {System.out.println("");
+	}
+
+	public boolean occupied(int x, int i) 
+	{	
+		return false;
 	}
 }

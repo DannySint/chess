@@ -13,8 +13,12 @@ public class Chess
 		Pieces shiro = new Pieces(board, 'w'); //white
 		Pieces kuro = new Pieces(board, 'b'); //black
 		
-		
 		//construct 2 players
+		
+		//construct display
+		TextDisplay display = new TextDisplay(shiro);
+		
+		//System.out.println(shiro.getNumPieces());
 		
 		//do while game loop if (kingTaken)
 			//- request moves loop ("to" , "from")

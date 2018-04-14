@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.PieceCode;
+import assignment2018.*;
 
 public class Rook extends Piece {
 
@@ -13,14 +14,19 @@ public class Rook extends Piece {
 
     // method implements abstract availableMoves method in Piece class
     public ArrayList<Move> availableMoves() {
+    	return null;
+    	/*
         if (getColour() == PieceCode.WHITE)
             return whiteRook();
         else
             return blackRook();
+        */
     }
 
     // method to return list of legal moves for a white pawn
     private ArrayList<Move> whiteRook() {
+    	return null;
+    	/*
         // obtain current co-ordinates
         int x = this.getX();
         int y = this.getY();
@@ -123,6 +129,7 @@ public class Rook extends Piece {
         if (blackMoves.isEmpty())
             return null;
         return blackMoves;
+        */
     }
 	
 }
