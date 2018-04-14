@@ -6,33 +6,44 @@ public class TextDisplay implements Display
 
     private char[][] board;
     
-    public TextDisplay(Pieces myPieces)
-	{
-	    displayBoard(myPieces);
-	}
-	
-    @Override
-    public void displayBoard(Pieces myPieces) 
+    public TextDisplay() 
     {
-        System.out.println(" |ABCDEFGH");
-        System.out.println("----------");
-        System.out.println(myPieces.getNumPieces());
-        
-        char[][] board = new char[8][8];
-        
+        board = new char[8][8];
+        for (int row = 0; row < 8; row++) 
+        {
+            for (int col = 0; col < 8; col++)
+            {
+                board[col][row] = '.';
+            }
+            
+        }
+    }
+	
+    public void addPieces(Pieces myPieces)
+    {
         for (int piece = 0; piece < myPieces.getNumPieces(); piece++)
         {
             //System.out.println(myPieces.getPiece(piece));
-            board[myPieces.getPiece(piece).getX()][myPieces.getPiece(piece).getY()] = myPieces.getPiece(piece).getChar(); 
-	    }
+            board[myPieces.getPiece(piece).getX()][myPieces.getPiece(piece).getY()] = myPieces.getPiece(piece).getChar();
+        }
+    }
+    
+    @Override
+    public void displayBoard(Pieces myPieces) //really doesn't need this parameter
+    {
+        System.out.println(" |ABCDEFGH");
+        System.out.println("----------");
         
         //display board loops
-        for (int i = 0; i < 8; i++) 
+        for (int row = 0; row < 8; row++) 
         {
-            for (int j = 0; j < 8; j++)
+            System.out.print(row + " ");
+            for (int col = 0; col < 8; col++)
             {
-                System.out.print(board[j][i]);
+                
+                System.out.print(board[col][row]);
             }
+            
             System.out.println();
         }
 	}
@@ -42,8 +53,9 @@ public class TextDisplay implements Display
     {
         Board board = new Board();
         Pieces myPieces = new Pieces(board, 0);
-
-        TextDisplay display = new TextDisplay(myPieces);
+        
+        TextDisplay display = new TextDisplay();
+        display.addPieces(myPieces);
         display.displayBoard(myPieces);
     }
 }

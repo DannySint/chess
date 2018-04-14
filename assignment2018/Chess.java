@@ -16,7 +16,12 @@ public class Chess
 		//construct 2 players
 		
 		//construct display
-		TextDisplay display = new TextDisplay(shiro);
+		TextDisplay display = new TextDisplay();
+		
+		display.addPieces(shiro);
+		display.addPieces(kuro);
+		
+		display.displayBoard(shiro); //shouldn't need the pieces to display the board.
 		
 		//System.out.println(shiro.getNumPieces());
 		
