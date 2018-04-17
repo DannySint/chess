@@ -10,6 +10,9 @@ public class Board
     private Pieces black;
 	private Piece[][] board = new Piece[PieceCode.XSIZE][PieceCode.YSIZE];
 	
+	/**
+	 * Constructor method to add both sets of pieces to the board
+	 */
 	public Board() 
 	{
 	    //create pieces
@@ -17,18 +20,28 @@ public class Board
         black = new Pieces(this, 1);
 	}
 	
-	//setup board
-	public void setup() {}
+	/**
+	 * Method to set the position of a piece
+	 * @param x 
+	 * @param y
+	 * @param thePiece
+	 */
+	public void setPosition(int x, int y, Piece thePiece) 
+	{
+	    thePiece.setPosition(x, y);
+	}
 	
-	public void setPosition(int x, int y, Piece thePiece) {}
-		
+	/**
+	 * Method that checks if user supplied coordinates are outside of the board's range
+	 * @param x is the passed x coordinate
+	 * @param y is the passed y coordinate
+	 * @return true if coordinates are out of range
+	 * @return false if coordinates are fine
+	 */
 	public boolean outOfRange(int x, int y) 
 	{
-		if (x > 7 || x < 0)
-			{
-				if (y > 7 || y < 0)
-				{return true;}
-			}
+		if (x > 7 || x < 0) {return true;} //if ((x>7 || x<0) && (y>7 || y<0)) {return true;} else {return false;}
+		if (y > 7 || y < 0) {return true;}
 		return false;
 	}
 	
@@ -36,11 +49,24 @@ public class Board
 	
 	public void removePiece() {}
 	
-	//return piece at particular location
+	/**
+	 * Method to return what piece is at a particular location
+	 * @param x is the passed x coordinate
+	 * @param y is the passed y coordinate
+	 * @return the piece if exists among white or black
+	 * @return null if no piece exists at particular location
+	 */
 	public Piece getPiece(int x, int y) 
 	{
+		if (occupied(x,y)) 
+		{
+		    for (int i = 0; i < white.getNumPieces(); i++)
+	        {
+	            if ((white.getPiece(i).getX() == x) && (white.getPiece(i).getY() == y)) {return white.getPiece(i);}
+	            if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) {return black.getPiece(i);}
+	        }
+		}
 		return null;
-		//if (!occupied()) {return ?;} else {}
 	}
 	
 	//returns state of board
@@ -49,10 +75,21 @@ public class Board
 	public Pieces getWhite() {return white;}
 	public Pieces getBlack() {return black;}
 	
+    /**
+     * Method to check if a space is occupied
+     * @param x is passed x coordinate
+     * @param y is passed y coordinate
+     * @return true if a piece exists
+     * @return false if no piece exists
+     */
+	public boolean occupied(int x, int y) 
+	{
+	    for (int i = 0; i < white.getNumPieces(); i++)
+	    {
+	        if ((white.getPiece(i).getX() == x) && (white.getPiece(i).getY() == y)) {return true;}
+	        if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) {return true;}
+	    }
+	    return false;	    
+	}
 	
-	
-    //method to check if a space is occupied
-	public boolean occupied(int x, int y) {return false;}
-	
-	public static void main(String[] args) {System.out.println("");}
 }
