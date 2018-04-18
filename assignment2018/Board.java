@@ -86,8 +86,10 @@ public class Board
 	{
 	    for (int i = 0; i < white.getNumPieces(); i++)
 	    {
-	        if ((white.getPiece(i).getX() == x) && (white.getPiece(i).getY() == y)) {return true;}
-	        if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) {return true;}
+	        if ((white.getPiece(i).getX() == x) && (white.getPiece(i).getY() == y)) 
+	            {return true;}
+	        if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) 
+	            {return true;}
 	    }
 	    return false;	    
 	}

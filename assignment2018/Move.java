@@ -38,18 +38,6 @@ public class Move
     }
     
     /**
-     * testMove transfers movement to movePiece (this code is legacy but might be useful in future for returning legal)
-     * @param board
-     * @return 
-     */
-    public boolean testMove(Board board) 
-    {
-        boolean legal = false;
-        //if (this.captured) {legal = capturePiece(board);} else {legal = movePiece(board);}
-        legal = movePiece(board);
-        return legal;
-    }
-    /**
      * From this method we are checking if the move exists within the piece's movepool and executing the move if so
      * If the move captures an enemy piece, there is special code for deleting that piece from the pieceset 
      * @return true if move exists
@@ -64,7 +52,8 @@ public class Move
             
             if ((piece.availableMoves().get(i).getNewX() == newX) && (piece.availableMoves().get(i).getNewY() == newY))
             {
-                if (this.captured) //if the moved to piece is captured then it needs to be searched for and deleted 
+                //if (this.captured) //if the moved to piece is captured then it needs to be searched for and deleted
+                if (piece.availableMoves().get(i).captured)
                 {
                     //black search for piece
                     for (int j=0; j<board.getBlack().getNumPieces(); j++)
@@ -72,7 +61,7 @@ public class Move
                         if ((board.getBlack().getPiece(j).getX() == this.newX) && (board.getBlack().getPiece(j).getY() == this.newY))
                         {
                             board.getBlack().delete(board.getBlack().getPiece(j));
-                            piece.setPosition(newX, newY);
+                            //piece.setPosition(newX, newY);
                             return true;
                         }
                     }
@@ -83,18 +72,17 @@ public class Move
                         if ((board.getWhite().getPiece(j).getX() == this.newX) && (board.getWhite().getPiece(j).getY() == this.newY))
                         {
                             board.getWhite().delete(board.getWhite().getPiece(j));
-                            piece.setPosition(newX, newY);
+                            //piece.setPosition(newX, newY);
                             return true;
                         }
                     }
                 }
                 else
                 {
-                    piece.setPosition(newX, newY);
+                    //piece.setPosition(newX, newY);
                     return true;
                 }
             }
-            System.out.println();
         }
         return false;
     }
@@ -107,7 +95,7 @@ public class Move
             if ((board.getBlack().getPiece(i).getX() == this.newX) && (board.getBlack().getPiece(i).getY() == this.newY))
                 {
                     board.getBlack().delete(board.getBlack().getPiece(i));
-                    piece.setPosition(newX, newY);
+                    //piece.setPosition(newX, newY);
                     return true;
                 }
         }
@@ -118,7 +106,7 @@ public class Move
             if ((board.getWhite().getPiece(i).getX() == this.newX) && (board.getWhite().getPiece(i).getY() == this.newY))
                 {
                     board.getWhite().delete(board.getWhite().getPiece(i));
-                    piece.setPosition(newX, newY);
+                    //piece.setPosition(newX, newY);
                     return true;
                 }
         }

@@ -53,6 +53,7 @@ public class TextDisplay implements Display
             }
             System.out.println();
         }
+        System.out.println();
         clearBoard();
     }
     
