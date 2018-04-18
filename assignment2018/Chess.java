@@ -1,10 +1,6 @@
 package assignment2018;
 
-import java.util.Arrays;
 import java.util.Scanner;
-
-import assignment2018.codeprovided.Pawn;
-import assignment2018.codeprovided.Piece;
 
 public class Chess 
 {
@@ -79,6 +75,9 @@ public class Chess
 
 		    //System.out.println("Piece at 5, 6: " + board.getPiece(5, 6));
 		    //System.out.println("Piece at 5, 5: " + board.getPiece(5, 5));
+		    
+		    System.out.println(board.getWhite().getNumPieces());
+		    System.out.println(board.getBlack().getNumPieces());
 		    
 				//get piece
 				//check valid move

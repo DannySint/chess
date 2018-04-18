@@ -29,11 +29,9 @@ public class Rook extends Piece {
         /**
          * Rook's UP Loop
          */
-        for (int i=1; i<8; i++)
+        for (int i=1; i<7; i++)
         {
-            if (getBoard().outOfRange(x, y+i)) {break;}
-            
-            
+            if (getBoard().outOfRange(x, y+i)) {break;}            
             
             if (!getBoard().occupied(x, y+i))
             {
