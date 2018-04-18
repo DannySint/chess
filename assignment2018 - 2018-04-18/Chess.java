@@ -72,6 +72,12 @@ public class Chess
 		    //Black Pawn take White Pawn
 		    move = new Move(board.getPiece(5, 4), 5, 4, 6, 3, true);
 		    legal = move.testMove(board);
+
+		    //System.out.println("Piece at 5, 6: " + board.getPiece(5, 6));
+		    //System.out.println("Piece at 5, 5: " + board.getPiece(5, 5));
+		    
+		    System.out.println(board.getWhite().getNumPieces());
+		    System.out.println(board.getBlack().getNumPieces());
 		    
 				//get piece
 				//check valid move
