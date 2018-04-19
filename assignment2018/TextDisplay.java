@@ -41,6 +41,7 @@ public class TextDisplay implements Display
     public void displayBoard(Pieces myPieces) //really doesn't need this parameter
     {
         System.out.println(" |ABCDEFGH");
+        System.out.println(" |01234567");
         System.out.println("----------");
         
         //display board loops

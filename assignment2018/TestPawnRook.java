@@ -1,75 +1,98 @@
 package assignment2018;
 
-public class TestPawnRook {
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+
+public class TestPawnRook 
+{
+    Chess chess = new Chess();
+    int x, y, newX, newY = 0;
+    Board board;
+    Move move;
     
-    public void testPawns(Board board) 
+    @Before
+    public void setup()
     {
-        switch (turnNumber)
+        Chess.init();
+        
+    }
+    
+    @Test
+    public void testPawns() 
+    {
+        int turnNumber = 1;
+        do
         {
-        case 1: 
-            //Pawn H6 to H4
-            move = new Move(board.getPiece(7, 6), 7, 6, 7, 4, false);
-            System.out.println("Piece at 7, 6: " + board.getPiece(7, 6));
-            if (board.getPiece(move.getX(), move.getY()) != null)
+            System.out.println(turnNumber);
+            switch (turnNumber)
             {
-                legal = move.movePiece(board);
-                if (legal) 
-                    {board.getPiece(7, 6).setPosition(7, 4);}
+                
+                case 1: 
+                    //Black Pawn H6 to H4
+                    x=7;y=6;
+                    newX=7; newY=4;
+                break;
+                
+                case 2:
+                    //Black Rook H7 to H5
+                    x=7; y=7;
+                    newX=7; newY=5;
+                break;
+                
+                case 3: 
+                    //Black Rook H5 to H4 - should be blocked as a pawn is there
+                    x=7; y=5;
+                    newX=7; newY = 4;
+                break;
+                
+                case 4:
+                    //Black Rook H5 to D5
+                    x=7; y=5;
+                    newX = 3; newY=5;
+                break;
+                
+                case 5: 
+                    //Black Rook D5 to A5
+                    x=3; y=5;
+                    newX=0; newY=5;
+                break;
+                
+                case 6: 
+                    //White Pawn A1 to A3
+                    x=0; y=1;
+                    newX=0; newY=3;
+                break;
+                
+                case 7: 
+                    //White Rook A0 to A2
+                    x=0; y=0;
+                    newX=0; newY=2;
+                break;
+                
+                case 8:
+                    //Black Room A5 to A3
+                    x=0; y=5;
+                    newX=0; newY=3;
+                break;
+                
+                case 9:
+                    //Black Room A3 to A4 
+                    x=0; y=3;
+                    newX=0; newY=4;
+                break;
+                
+                case 10:
+                    //White Room A2 to A4 
+                    x=0; y=2;
+                    newX=0; newY=4;
+                break;
             }
-        break;
+            Chess.warp(x, y, newX, newY, board);
+            turnNumber++;
+        } while (turnNumber < 12);
         
-        case 2:
-            //Rook H7 to H5
-            move = new Move(board.getPiece(7, 7), 7, 7, 7, 6, false);
-            if (board.getPiece(move.getX(), move.getY()) != null)
-            {
-                System.out.println("Piece at 7, 7: " + board.getPiece(7, 7));
-                legal = move.movePiece(board);
-                if (legal) 
-                    {board.getPiece(7, 7).setPosition(7, 5);}
-            }
-        break;
         
-        case 3: 
-            //Rook H5 to H4 - should be blocked
-              move = new Move(board.getPiece(7, 5), 7, 5, 7, 4, false);
-              System.out.println(move.getX() + " " +  move.getY());
-                if (board.getPiece(move.getX(), move.getY()) != null)
-                {
-                    System.out.println("Piece at 7, 5: " + board.getPiece(7, 5));
-                    legal = move.movePiece(board);
-                    System.out.println("Legal: " + legal);
-                    if (legal) 
-                        {board.getPiece(7, 5).setPosition(7, 4);}
-                }
-        break;
-        
-        case 4: 
-            //White Pawn A1 to A3
-              move = new Move(board.getPiece(0, 1), 0, 1, 0, 3, false);
-              System.out.println(move.getX() + " " +  move.getY());
-                if (board.getPiece(move.getX(), move.getY()) != null)
-                {
-                    System.out.println("Piece at 0, 1: " + board.getPiece(0, 1));
-                    legal = move.movePiece(board);
-                    System.out.println("Legal: " + legal);
-                    if (legal) 
-                        {board.getPiece(0, 1).setPosition(0, 3);}
-                }
-        break;
-        
-        case 5: 
-            //White Rook A0 to A2
-              move = new Move(board.getPiece(0, 0), 0, 0, 0, 2, false);
-              System.out.println(move.getX() + " " +  move.getY());
-                if (board.getPiece(move.getX(), move.getY()) != null)
-                {
-                    System.out.println("Piece at 0, 0: " + board.getPiece(0, 0));
-                    legal = move.movePiece(board);
-                    System.out.println("Legal: " + legal);
-                    if (legal) 
-                        {board.getPiece(0, 0).setPosition(0, 2);}
-                }
-        break;
     }
 }
