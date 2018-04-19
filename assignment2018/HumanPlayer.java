@@ -32,17 +32,15 @@ public class HumanPlayer extends Player
         do {
             do {
                 do {
+                    System.out.println(this + ", please enter a move in the format \"H6 H4\" (Pawn at H6 to H4)");
                     from = scanner.next(); 
                     to = scanner.next();
                     convertCoords();
-                    for (int i : jump) {System.out.println(i);}
-                    //- request moves loop ("to" , "from")
-                    
                     
                 } while (convertCoords() == false);
             } while (outOfRange());
         } while (pieceBelongsToPlayer() == false);
-        System.out.println("From: (" + jump[0] + ", " + jump[1] + ")");        
+        //System.out.println("From: (" + jump[0] + ", " + jump[1] + ")");        
         
         return jump;
     }

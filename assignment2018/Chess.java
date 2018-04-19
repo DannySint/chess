@@ -1,9 +1,11 @@
 package assignment2018;
 
-import java.util.Scanner;
-
-import assignment2018.codeprovided.Player;
-
+/**
+ * Main class of Chess where the game runs off
+ * 
+ * @author Danny
+ * 19th April 2018
+ */
 public class Chess 
 {
     
@@ -11,7 +13,7 @@ public class Chess
     private static TextDisplay display;
     private static Move move;
     private static HumanPlayer white;
-    private static HumanPlayer black;
+    private static RandomPlayer black;
     private static int turnNumber;
     private static boolean legal;
     
@@ -26,16 +28,16 @@ public class Chess
     
     public static void init()
     {
-      //construct board
+        //construct board
         board = new Board();
-        
-        //construct 2 players
-        white = new HumanPlayer("Jeanne d'Arc", board.getWhite(), board, black);
-        black = new HumanPlayer("Amakusa Shirou Tokisada", board.getBlack(), board, white); //don't look up these names if you haven't seen Fate
-        turnNumber = 1;
         
         //construct display
         display = new TextDisplay();
+        
+        //construct 2 players
+        white = new HumanPlayer("Jeanne d'Arc", board.getWhite(), board, black);
+        black = new RandomPlayer("Amakusa Shirou Tokisada", board.getBlack(), board, white); //don't look up these names if you haven't seen Fate
+        turnNumber = 0;
     }
     
     public static boolean run()
@@ -53,12 +55,12 @@ public class Chess
             switch((turnNumber % 2))
             {
             case 0:
-                jump = black.requestMove();
-                break;
+                jump = white.requestMove();
+            break;
                 
             case 1:
-                jump = white.requestMove();
-                break;
+                jump = black.requestMove();
+            break;
             }
             warp(jump[0], jump[1], jump[2], jump[3], board);
         turnNumber++;
