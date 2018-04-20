@@ -1,6 +1,10 @@
 package assignment2018;
 
 import org.junit.Test;
+
+import assignment2018.codeprovided.Pieces;
+import assignment2018.codeprovided.Player;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -11,12 +15,12 @@ public class TestPawnRook
     int x, y, newX, newY = 0;
     Board board;
     Move move;
+    Boolean legal;
     
     @Before
     public void setup()
     {
-        Chess.init();
-        
+        legal = false;
     }
     
     @Test
@@ -48,6 +52,7 @@ public class TestPawnRook
                 break;
                 
                 case 4:
+                    assertEquals(legal, false);
                     //Black Rook H5 to D5
                     x=7; y=5;
                     newX = 3; newY=5;
@@ -89,10 +94,27 @@ public class TestPawnRook
                     newX=0; newY=4;
                 break;
             }
-            Chess.warp(x, y, newX, newY, board);
+            legal = chess.warp(x, y, newX, newY);
+            assertEquals(legal, true);
             turnNumber++;
         } while (turnNumber < 12);
         
+        
+    }
+    
+    private class TestPlayer extends Player
+    {
+
+        public TestPlayer(String n, Pieces p, Board b, Player o) {
+            super(n, p, b, o);
+            // TODO 
+        }
+
+        @Override
+        public boolean makeMove() {
+         
+            return false;
+        }
         
     }
 }

@@ -1,5 +1,7 @@
 package assignment2018;
 
+import assignment2018.codeprovided.Player;
+
 /**
  * Main class of Chess where the game runs off
  * 
@@ -9,24 +11,24 @@ package assignment2018;
 public class Chess 
 {
     
-    private static Board board;
-    private static TextDisplay display;
-    private static Move move;
-    private static HumanPlayer white;
-    private static RandomPlayer black;
-    private static int turnNumber;
-    private static boolean legal;
+    private Board board;
+    private TextDisplay display;
+    private Move move;
+    private Player white;
+    private Player black;
+    private int turnNumber;
+    private boolean legal;
     
-    private static String from = "";
-    private static String to = "";
-    private static int[] jump;
+    private String from = "";
+    private String to = "";
+    private int[] jump;
     
-    private static int x = 0;
-    private static int y = 0;
-    private static int newX = 0; 
-    private static int newY = 0;
+    private int x = 0;
+    private int y = 0;
+    private int newX = 0; 
+    private int newY = 0;
     
-    public static void init()
+    public Chess()
     {
         //construct board
         board = new Board();
@@ -36,57 +38,56 @@ public class Chess
         
         //construct 2 players
         white = new HumanPlayer("Jeanne d'Arc", board.getWhite(), board, black);
-        black = new RandomPlayer("Amakusa Shirou Tokisada", board.getBlack(), board, white); //don't look up these names if you haven't seen Fate
+        black = new HumanPlayer("Amakusa Shirou Tokisada", board.getBlack(), board, white);
+        //don't look up these names if you haven't seen Fate
+        white.setOpponent(black);
         turnNumber = 0;
     }
     
-    public static boolean run()
+    public boolean run()
     {
         x=0;
         y=0; 
         newX=0;
-        newY=0;
+        newY=0; 
+        Player current = white;
       //Game loop ending if a king is taken 
         do 
         {
             updateDisplay(display, board);
             legal = false; //reset legal (just in case)
             
-            switch((turnNumber % 2))
+            legal = current.makeMove();
+            if (legal)
             {
-            case 0:
-                jump = white.requestMove();
-            break;
-                
-            case 1:
-                jump = black.requestMove();
-            break;
+                current = current.getOpponent();
+                turnNumber++;
             }
-            warp(jump[0], jump[1], jump[2], jump[3], board);
-        turnNumber++;
+            
         //while (!kingTaken());
         } while (turnNumber(turnNumber) <= 12);
         
         return false;
     }
 	
-	public static void warp(int x, int y, int newX, int newY, Board board) 
+	public boolean warp(int x, int y, int newX, int newY) 
 	{
         Move move = new Move(board.getPiece(x, y), x, y, newX, newY, false);
         //System.out.println("Piece at "+x+", "+y+": " + board.getPiece(x, y));
         System.out.println("Piece " + board.getPiece(x, y) + " at position: (" + x + ", " + y + ") moving to (" + newX + ", " + newY+ ")");
         if (board.getPiece(move.getX(), move.getY()) != null)
         {
-            boolean legal = move.movePiece(board);
+            legal = move.movePiece(board);
             System.out.println("Legal: " + legal);
             if (legal) 
                 {board.getPiece(x, y).setPosition(newX, newY);}
         }
+        return legal;
 	}
 
-    public static boolean kingTaken() {return false;} //temporary method
-	public static int turnNumber(int turnNumber) {turnNumber++; return turnNumber;}
-	public static void updateDisplay(TextDisplay display, Board board) 
+    public boolean kingTaken() {return false;} //temporary method
+	public int turnNumber(int turnNumber) {turnNumber++; return turnNumber;}
+	public void updateDisplay(TextDisplay display, Board board) 
 	{          
 	    display.addPieces(board.getWhite());
 	    display.addPieces(board.getBlack());
@@ -95,7 +96,7 @@ public class Chess
 	
    public static void main(String[] args) 
     {
-        init();
-        run();
+       Chess c = new Chess();
+       c.run();
     }
 }

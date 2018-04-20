@@ -2,6 +2,7 @@ package assignment2018;
 
 import java.util.Scanner;
 
+import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.Pieces;
 import assignment2018.codeprovided.Player;
 
@@ -20,7 +21,16 @@ public class HumanPlayer extends Player
     @Override
     public boolean makeMove() 
     {
+        int[] move = requestMove();
+        Piece piece = getBoard().getPiece(move[0], move[1]);
         
+        for(Move m : piece.availableMoves()) 
+        {
+            if(move[2] == m.getNewX() && move[3] == m.getNewY()) 
+            {
+                return getBoard().setPosition(move[2], move[3], piece);
+            }
+        }
         return false;
     }
     
@@ -28,18 +38,18 @@ public class HumanPlayer extends Player
     {
         from = "h2";
         to = "h2";
-        scanner = new Scanner(System.in);
+        
         do {
-            do {
-                do {
-                    System.out.println(this + ", please enter a move in the format \"H6 H4\" (Pawn at H6 to H4)");
-                    from = scanner.next(); 
-                    to = scanner.next();
-                    convertCoords();
-                    
-                } while (convertCoords() == false);
-            } while (outOfRange());
-        } while (pieceBelongsToPlayer() == false);
+            from = "s";
+            to = "";
+            scanner = new Scanner(System.in);
+            System.out.println(this.toString() + ", please enter a move in the format \"H6 H4\" (Pawn at H6 to H4)");
+            from = scanner.next().toUpperCase(); 
+            to = scanner.next().toUpperCase();
+            scanner = null;
+            convertCoords();
+            
+        } while ((convertCoords() == false) || (outOfRange()) || (pieceBelongsToPlayer() == false) );
         //System.out.println("From: (" + jump[0] + ", " + jump[1] + ")");        
         
         return jump;
@@ -80,14 +90,15 @@ public class HumanPlayer extends Player
         return false;
     }
     
-    public static void main(String[] args) 
+    /*public static void main(String[] args) 
     {
+        Chess chess = new Chess();
         Board board = new Board();
         HumanPlayer avenger = null;
         HumanPlayer ruler = new HumanPlayer("ruler", new Pieces(board, 0), board, avenger);
         avenger = new HumanPlayer("avenger", new Pieces(board, 1), board, (Player)ruler);
         int[] jump = ruler.requestMove();
         Move move;
-        Chess.warp(jump[0], jump[1], jump[2], jump[3], board);
-    }
+        chess.warp(jump[0], jump[1], jump[2], jump[3]);
+    }*/
 }
