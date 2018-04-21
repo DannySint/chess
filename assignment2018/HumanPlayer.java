@@ -31,6 +31,7 @@ public class HumanPlayer extends Player
                 return getBoard().setPosition(move[2], move[3], piece);
             }
         }
+        System.out.println("Your designated move was illegal.");
         return false;
     }
     
@@ -43,7 +44,7 @@ public class HumanPlayer extends Player
             from = "s";
             to = "";
             scanner = new Scanner(System.in);
-            System.out.println(this.toString() + ", please enter a move in the format \"H6 H4\" (Pawn at H6 to H4)");
+            System.out.println(this.toString() + ", please enter a move: ");
             from = scanner.next().toUpperCase(); 
             to = scanner.next().toUpperCase();
             scanner = null;
@@ -77,6 +78,7 @@ public class HumanPlayer extends Player
             if ((this.getPieces().getPiece(i).getX() == jump[0]) && (this.getPieces().getPiece(i).getY() == jump[1]))
             {return true;}
         }
+        System.out.println("The selected piece doesn't belong to you");
         return false;
     }
     
@@ -85,8 +87,12 @@ public class HumanPlayer extends Player
         for (int i=0; i<jump.length;i++)
         {
             if ((jump[i] < 0) || jump[i] > 7) 
-                {return true;}
+                {
+                    System.out.println("Your designated move was out of range of the board.");
+                    return true;
+                }
         }
+        
         return false;
     }
     

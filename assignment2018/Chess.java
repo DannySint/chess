@@ -13,6 +13,7 @@ public class Chess
     
     private Board board;
     private TextDisplay display;
+    private GraphicsDisplay graphicsDisplay;
     private Move move;
     private Player white;
     private Player black;
@@ -35,10 +36,11 @@ public class Chess
         
         //construct display
         display = new TextDisplay();
+        graphicsDisplay = new GraphicsDisplay(board);
         
         //construct 2 players
-        white = new HumanPlayer("Jeanne d'Arc", board.getWhite(), board, black);
-        black = new HumanPlayer("Amakusa Shirou Tokisada", board.getBlack(), board, white);
+        white = new HumanPlayer("White", board.getWhite(), board, black);
+        black = new HumanPlayer("Black", board.getBlack(), board, white);
         //don't look up these names if you haven't seen Fate
         white.setOpponent(black);
         turnNumber = 0;
@@ -46,15 +48,26 @@ public class Chess
     
     public boolean run()
     {
+        System.out.println("White is top 2 rows A0 to H1");
+        System.out.println("Black is bottom 2 rows A6 to H7");
+        System.out.println("Lowercase letters are white. Uppercase letters are black.");
+        System.out.println("R is Rook");
+        System.out.println("N is Knight");
+        System.out.println("B is Bishop");
+        System.out.println("Q is Queen");
+        System.out.println("K is King");
+        System.out.println("P is Pawn");
+        System.out.println("Enter inputs in the form \"H1 H3\" to move a white Pawn from H1 to H3");
         x=0;
         y=0; 
         newX=0;
         newY=0; 
         Player current = white;
-      //Game loop ending if a king is taken 
+        //Game loop ending if a king is taken 
         do 
         {
-            updateDisplay(display, board);
+            updateTextDisplay(display, board);
+            updateGraphicsDisplay(graphicsDisplay, board);
             legal = false; //reset legal (just in case)
             
             legal = current.makeMove();
@@ -64,8 +77,8 @@ public class Chess
                 turnNumber++;
             }
             
-        //while (!kingTaken());
-        } while (turnNumber(turnNumber) <= 12);
+        } while (!kingTaken());
+        //} while (turnNumber(turnNumber) <= 12);
         
         return false;
     }
@@ -85,13 +98,37 @@ public class Chess
         return legal;
 	}
 
-    public boolean kingTaken() {return false;} //temporary method
+    public boolean kingTaken() 
+    {
+        for (int piece=0; piece < board.getWhite().getNumPieces(); piece++)
+        {
+            if (board.getWhite().getPiece(piece).getChar() == 'k')
+            {
+                return false;
+            }
+        }
+        for (int piece=0; piece < board.getBlack().getNumPieces(); piece++)
+        {
+            if (board.getWhite().getPiece(piece).getChar() == 'K')
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
 	public int turnNumber(int turnNumber) {turnNumber++; return turnNumber;}
-	public void updateDisplay(TextDisplay display, Board board) 
+	public void updateTextDisplay(TextDisplay display, Board board) 
 	{          
 	    display.addPieces(board.getWhite());
 	    display.addPieces(board.getBlack());
 	    display.displayBoard(board.getWhite()); //shouldn't need the pieces to display the board.
+	}
+	public void updateGraphicsDisplay(GraphicsDisplay graphicsDisplay, Board board)
+	{
+	    //graphicsDisplay.addPieces(board.getWhite());
+	    //graphicsDisplay.addPieces(board.getBlack());
+	    graphicsDisplay.displayBoard(board.getWhite());
 	}
 	
    public static void main(String[] args) 

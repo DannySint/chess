@@ -32,7 +32,6 @@ public class TestPawnRook
             System.out.println(turnNumber);
             switch (turnNumber)
             {
-                
                 case 1: 
                     //Black Pawn H6 to H4
                     x=7;y=6;
@@ -40,12 +39,14 @@ public class TestPawnRook
                 break;
                 
                 case 2:
+                    assertEquals(legal, true); //previous move btw
                     //Black Rook H7 to H5
                     x=7; y=7;
                     newX=7; newY=5;
                 break;
                 
-                case 3: 
+                case 3:
+                    assertEquals(legal, true);
                     //Black Rook H5 to H4 - should be blocked as a pawn is there
                     x=7; y=5;
                     newX=7; newY = 4;
@@ -56,48 +57,58 @@ public class TestPawnRook
                     //Black Rook H5 to D5
                     x=7; y=5;
                     newX = 3; newY=5;
+                    
                 break;
                 
                 case 5: 
+                    assertEquals(legal, true);
                     //Black Rook D5 to A5
                     x=3; y=5;
                     newX=0; newY=5;
                 break;
                 
-                case 6: 
+                case 6:
+                    assertEquals(legal, true);
                     //White Pawn A1 to A3
                     x=0; y=1;
                     newX=0; newY=3;
                 break;
                 
                 case 7: 
+                    assertEquals(legal, true);
                     //White Rook A0 to A2
                     x=0; y=0;
                     newX=0; newY=2;
                 break;
                 
                 case 8:
+                    assertEquals(legal, true);
                     //Black Room A5 to A3
                     x=0; y=5;
                     newX=0; newY=3;
                 break;
                 
                 case 9:
+                    assertEquals(legal, true);
                     //Black Room A3 to A4 
                     x=0; y=3;
                     newX=0; newY=4;
                 break;
                 
                 case 10:
+                    assertEquals(legal, true);
                     //White Room A2 to A4 
                     x=0; y=2;
                     newX=0; newY=4;
                 break;
+                
+                case 11:
+                    assertEquals(legal, true);
+                break;
             }
             legal = chess.warp(x, y, newX, newY);
-            assertEquals(legal, true);
             turnNumber++;
-        } while (turnNumber < 12);
+        } while (turnNumber < 13);
         
         
     }

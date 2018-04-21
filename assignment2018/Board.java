@@ -84,11 +84,14 @@ public class Board {
      */
     public Piece getPiece(int x, int y) {
         if (occupied(x, y)) {
-            for (int i = 0; i < white.getNumPieces(); i++) {
-                if ((white.getPiece(i).getX() == x) && (white.getPiece(i).getY() == y)) {
+            for (int i = 0; i < white.getNumPieces(); i++) 
+            {
+                if ((white.getPiece(i).getX() == x) && (white.getPiece(i).getY() == y)) 
+                {
                     return white.getPiece(i);
                 }
-                if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) {
+                if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) 
+                {
                     return black.getPiece(i);
                 }
             }
