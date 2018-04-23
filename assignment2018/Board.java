@@ -20,14 +20,16 @@ public class Board {
 
     /**
      * Method to set the position of a piece
-     * 
+     * If the occupying piece is a different colour from the moving piece the opposing piece is deleted  
      * @param x
      * @param y
      * @param thePiece
      */
-    public boolean setPosition(int x, int y, Piece thePiece) {
+    public boolean setPosition(int x, int y, Piece thePiece) 
+    {
         thePiece.setPosition(x, y);
-        if (board[x][y] != null && board[x][y].getColourChar() != thePiece.getColourChar()) 
+        //If the board is not empty and the opposite colour piece exists in the occupied piece is deleted.
+        if (board[x][y] != null && board[x][y].getColourChar() != thePiece.getColourChar())
         {
             switch (board[x][y].getColourChar()) 
             {
@@ -38,7 +40,9 @@ public class Board {
                 white.delete(board[x][y]);
                 break;
             }
-        } else if(board[x][y] != null) {
+        } 
+        else if(board[x][y] != null)  //then the piece must contain a member of its so it cannot move 
+        {
             return false;
         }
         board[x][y] = thePiece;
@@ -90,6 +94,10 @@ public class Board {
                 {
                     return white.getPiece(i);
                 }
+            }
+            
+            for (int i = 0; i < black.getNumPieces(); i++)
+            {
                 if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) 
                 {
                     return black.getPiece(i);
@@ -100,19 +108,23 @@ public class Board {
     }
 
     // returns state of board
-    public Board getBoard() {
+    public Board getBoard() 
+    {
         return this;
     }
 
-    public Piece[][] returnBoard() {
+    public Piece[][] returnBoard() 
+    {
         return board;
     }
 
-    public Pieces getWhite() {
+    public Pieces getWhite() 
+    {
         return white;
     }
 
-    public Pieces getBlack() {
+    public Pieces getBlack() 
+    {
         return black;
     }
 
@@ -126,14 +138,19 @@ public class Board {
      * @return true if a piece exists
      * @return false if no piece exists
      */
-    public boolean occupied(int x, int y) {
-        for (int i = 0; i < white.getNumPieces(); i++) {
-            if ((white.getPiece(i).getX() == x) && (white.getPiece(i).getY() == y)) {
+    public boolean occupied(int x, int y) 
+    {
+        for (int i = 0; i < white.getNumPieces(); i++) 
+        {
+            if ((white.getPiece(i).getX() == x) && (white.getPiece(i).getY() == y)) 
+            {
                 return true;
             }
         }
-        for (int i = 0; i < black.getNumPieces(); i++) {
-            if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) {
+        for (int i = 0; i < black.getNumPieces(); i++) 
+        {
+            if ((black.getPiece(i).getX() == x) && (black.getPiece(i).getY() == y)) 
+            {
                 return true;
             }
         }

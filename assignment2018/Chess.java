@@ -10,6 +10,7 @@ import assignment2018.codeprovided.Player;
  */
 public class Chess 
 {
+    private enum Winner {WHITE, BLACK, NONE};
     
     private Board board;
     private TextDisplay display;
@@ -19,6 +20,7 @@ public class Chess
     private Player black;
     private int turnNumber;
     private boolean legal;
+    private Winner winner;
     
     private String from = "";
     private String to = "";
@@ -26,8 +28,6 @@ public class Chess
     
     private int x = 0;
     private int y = 0;
-    private int newX = 0; 
-    private int newY = 0;
     
     public Chess()
     {
@@ -40,14 +40,15 @@ public class Chess
         
         //construct 2 players
         white = new HumanPlayer("White", board.getWhite(), board, black);
-        black = new HumanPlayer("Black", board.getBlack(), board, white);
+        black = new AggressivePlayer("Black", board.getBlack(), board, white);
         //don't look up these names if you haven't seen Fate
         white.setOpponent(black);
         turnNumber = 0;
     }
     
-    public boolean run()
+    public void run()
     {
+        //Instructions for user
         System.out.println("White is top 2 rows A0 to H1");
         System.out.println("Black is bottom 2 rows A6 to H7");
         System.out.println("Lowercase letters are white. Uppercase letters are black.");
@@ -58,16 +59,13 @@ public class Chess
         System.out.println("K is King");
         System.out.println("P is Pawn");
         System.out.println("Enter inputs in the form \"H1 H3\" to move a white Pawn from H1 to H3");
-        x=0;
-        y=0; 
-        newX=0;
-        newY=0; 
         Player current = white;
         //Game loop ending if a king is taken 
         do 
         {
-            updateTextDisplay(display, board);
-            updateGraphicsDisplay(graphicsDisplay, board);
+            updateTextDisplay();
+            graphicsDisplay.updateBoard(board);
+            updateGraphicsDisplay();
             legal = false; //reset legal (just in case)
             
             legal = current.makeMove();
@@ -77,10 +75,17 @@ public class Chess
                 turnNumber++;
             }
             
-        } while (!kingTaken());
+        } while (kingTaken() == Winner.NONE);
         //} while (turnNumber(turnNumber) <= 12);
+        graphicsDisplay.reset(); 
         
-        return false;
+    }
+    
+    public void omedeto()
+    {
+        if (winner == Winner.BLACK) {System.out.println("Congratulations black team");}
+        else if (winner == Winner.WHITE) {System.out.println("Congratulations to white team");}
+        else {System.out.println("Nobody won or idk wtf happened");}
     }
 	
 	public boolean warp(int x, int y, int newX, int newY) 
@@ -98,33 +103,42 @@ public class Chess
         return legal;
 	}
 
-    public boolean kingTaken() 
+    public Winner kingTaken() 
     {
-        for (int piece=0; piece < board.getWhite().getNumPieces(); piece++)
+        boolean whiteKing = false;
+        boolean blackKing = false;
+        Winner winner = Winner.NONE;
+        for (int piece = 0; piece < board.getWhite().getNumPieces(); piece++)
         {
             if (board.getWhite().getPiece(piece).getChar() == 'k')
             {
-                return false;
+                whiteKing = true;
+                break;
             }
         }
-        for (int piece=0; piece < board.getBlack().getNumPieces(); piece++)
+        
+        for (int piece = 0; piece < board.getBlack().getNumPieces(); piece++)
         {
-            if (board.getWhite().getPiece(piece).getChar() == 'K')
+            if (board.getBlack().getPiece(piece).getChar() == 'K')
             {
-                return false;
+                blackKing = true;
             }
         }
-        return true;
+        if (whiteKing && blackKing) {winner = winner.NONE;}
+        if (!whiteKing) {winner = winner.BLACK;}
+        if (!blackKing) {winner = winner.WHITE;}
+        this.winner = winner;
+        return winner;
     }
     
-	public int turnNumber(int turnNumber) {turnNumber++; return turnNumber;}
-	public void updateTextDisplay(TextDisplay display, Board board) 
+    
+	public void updateTextDisplay() 
 	{          
 	    display.addPieces(board.getWhite());
 	    display.addPieces(board.getBlack());
 	    display.displayBoard(board.getWhite()); //shouldn't need the pieces to display the board.
 	}
-	public void updateGraphicsDisplay(GraphicsDisplay graphicsDisplay, Board board)
+	public void updateGraphicsDisplay()
 	{
 	    //graphicsDisplay.addPieces(board.getWhite());
 	    //graphicsDisplay.addPieces(board.getBlack());
@@ -135,5 +149,6 @@ public class Chess
     {
        Chess c = new Chess();
        c.run();
+       c.omedeto();
     }
 }

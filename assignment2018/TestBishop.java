@@ -73,6 +73,6 @@ public class TestBishop
             turnNumber++;
         //} while (!chess.kingTaken());
         } while (turnNumber < 13);
-        chess.updateDisplay(new TextDisplay(), board);
+        chess.updateTextDisplay();
     }
 }

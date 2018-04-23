@@ -78,7 +78,7 @@ public class HumanPlayer extends Player
             if ((this.getPieces().getPiece(i).getX() == jump[0]) && (this.getPieces().getPiece(i).getY() == jump[1]))
             {return true;}
         }
-        System.out.println("The selected piece doesn't belong to you");
+        System.out.println("The selected piece doesn't belong to you or doesn't contain anything.");
         return false;
     }
     

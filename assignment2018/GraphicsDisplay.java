@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import assignment2018.codeprovided.Display;
 import assignment2018.codeprovided.PieceCode;
@@ -62,10 +63,11 @@ public class GraphicsDisplay extends JFrame implements Display
         }*/
         
         //contentPane.setLayout(new FlowLayout());
-        contentPane.setLayout(new GridLayout(9, 9));
         
+        //BufferedImage king = new BufferedImage("king.jpg");
 
-        
+         
+        contentPane.setLayout(new GridLayout(9, 9));        
         
         char a = 'a';
         
@@ -78,7 +80,7 @@ public class GraphicsDisplay extends JFrame implements Display
             {
                 if (rows == 0)
                 {
-                    labels[rows][cols] = new JLabel(String.valueOf(text.charAt(cols)) + "/" + (cols-1));
+                    labels[rows][cols] = new JLabel(String.valueOf(text.charAt(cols)) );// + "/" + (cols-1));
                 }
                 else if (cols % 9 == 0) 
                 {
@@ -105,12 +107,18 @@ public class GraphicsDisplay extends JFrame implements Display
         //clearBoard();
     }
     
+    public void updateBoard(Board board)
+    {
+        this.board = board;
+    }
+    
     public String coordsToPieceCode(Board board, int x, int y)
     {
         PieceCode pieceCode = new PieceCode();
         if (board.getPiece(y, x) == null) {return null;}
         switch(board.getPiece(y, x).getChar())
         {
+            //white
             case 'p': return "WHITE_PAWN";
             case 'r': return "WHITE_ROOK";
             case 'b': return "WHITE_BISHOP";
@@ -126,6 +134,11 @@ public class GraphicsDisplay extends JFrame implements Display
             case 'K': return "BLACK_KING";
         }
         return null;
+    }
+    
+    public void reset()
+    {
+        SwingUtilities.updateComponentTreeUI(this);
     }
     
     public void clearBoard()

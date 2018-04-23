@@ -118,4 +118,6 @@ public class Move
     public int getY() {return y;}
     public int getNewX() {return newX;}
     public int getNewY() {return newY;}
+    public boolean getCaptured() {return captured;}
+    public int getCapturedValue(Board board)  {return board.getPiece(newX, newY).getValue();}
 }
