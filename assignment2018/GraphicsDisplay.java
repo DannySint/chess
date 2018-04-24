@@ -2,7 +2,6 @@ package assignment2018;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
@@ -26,7 +25,7 @@ import assignment2018.codeprovided.Pieces;
 
 /**
  * Image source: https://cdn.pixabay.com/photo/2012/04/10/22/54/chess-26774_960_720.png
- * Free for commercial use
+ * Free for commercial use - edited by Danny
  * @author Danny
  *
  */
@@ -41,41 +40,25 @@ public class GraphicsDisplay extends JFrame implements Display
     private JLabel[][] labels;
     private JMenuBar menuBar;
     private JMenu menu;
+    private int maxX = 900;
+    private int maxY = 900;
     
     
     public GraphicsDisplay(Board board)
     {
         this.board = board;
         this.setTitle("Chess");
-        this.setSize(900,900);
+        this.setSize(maxX,maxY);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setBackground(Color.GRAY);
         this.menuBar = new JMenuBar();
         this.menu = new JMenu("New Game");
-        loadImages(new GraphicsPanel());
-    }
-    
-    public void loadImages(Graphics g)
-    {
-        /*
-        BufferedImage king = null;
-        
-        
-        try {
-            king = ImageIO.read(new File("images/king.jpg"));
-        } catch (IOException e) {
-        }
-        
-        g.drawImage(king, 50, 50, this);*/
-        
     }
     
     @Override
     public void displayBoard(Pieces pieces)
     {
-        
-
         //Container
         contentPane = getContentPane();
         clearBoard();
@@ -123,9 +106,9 @@ public class GraphicsDisplay extends JFrame implements Display
         }
         
         //Menu stuff 
-        this.menuBar.add(menu);
-        this.setJMenuBar(menuBar);        
-        //clearBoard();
+        
+        this.setJMenuBar(menuBar);
+         
     }
     
     public void updateBoard(Board board)
