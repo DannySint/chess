@@ -54,14 +54,14 @@ public class GraphicsPanel extends JPanel {
             }
         }
         
-        BufferedImage king = null;
+        BufferedImage blackKing = null;
         
         try {
-            king = ImageIO.read(new File("images/king.jpg"));
+            blackKing = ImageIO.read(new File("images/BlackKing.png"));
         } catch (IOException e) {
         }
 
-        g.drawImage(king, 50, 50, this);
+        g.drawImage(blackKing, 50, 50, this);
     }
     
 }

@@ -40,8 +40,8 @@ public class Chess
         
         //construct 2 players
         white = new HumanPlayer("White", board.getWhite(), board, black);
-        black = new AggressivePlayer("Black", board.getBlack(), board, white);
-        //don't look up these names if you haven't seen Fate
+        black = new HumanPlayer("Black", board.getBlack(), board, white);
+        
         white.setOpponent(black);
         turnNumber = 0;
     }
@@ -60,12 +60,12 @@ public class Chess
         System.out.println("P is Pawn");
         System.out.println("Enter inputs in the form \"H1 H3\" to move a white Pawn from H1 to H3");
         Player current = white;
-        //Game loop ending if a king is taken 
+        //Game loop ending if a king is taken
+        updateTextDisplay();
+        updateGraphicsDisplay();
         do 
         {
-            updateTextDisplay();
-            graphicsDisplay.updateBoard(board);
-            updateGraphicsDisplay();
+            
             legal = false; //reset legal (just in case)
             
             legal = current.makeMove();
@@ -74,6 +74,8 @@ public class Chess
                 current = current.getOpponent();
                 turnNumber++;
             }
+            updateTextDisplay();
+            updateGraphicsDisplay();
             
         } while (kingTaken() == Winner.NONE);
         //} while (turnNumber(turnNumber) <= 12);

@@ -2,6 +2,7 @@ package assignment2018;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
@@ -38,6 +39,9 @@ public class GraphicsDisplay extends JFrame implements Display
     private String pieceCode = "";
     private JLabel[] label;
     private JLabel[][] labels;
+    private JMenuBar menuBar;
+    private JMenu menu;
+    
     
     public GraphicsDisplay(Board board)
     {
@@ -47,14 +51,34 @@ public class GraphicsDisplay extends JFrame implements Display
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setBackground(Color.GRAY);
+        this.menuBar = new JMenuBar();
+        this.menu = new JMenu("New Game");
+        loadImages(new GraphicsPanel());
+    }
+    
+    public void loadImages(Graphics g)
+    {
+        /*
+        BufferedImage king = null;
+        
+        
+        try {
+            king = ImageIO.read(new File("images/king.jpg"));
+        } catch (IOException e) {
+        }
+        
+        g.drawImage(king, 50, 50, this);*/
+        
     }
     
     @Override
     public void displayBoard(Pieces pieces)
     {
+        
+
         //Container
         contentPane = getContentPane();
-        
+        clearBoard();
         //JButton[] button = new JButton[4];
         /*for (int i = 0; i < button.length; i++) 
         {
@@ -99,11 +123,8 @@ public class GraphicsDisplay extends JFrame implements Display
         }
         
         //Menu stuff 
-        JMenuBar menuBar = new JMenuBar();
-        this.setJMenuBar(menuBar);
-        JMenu menu = new JMenu("New Game"); 
-        menuBar.add(menu);
-        
+        this.menuBar.add(menu);
+        this.setJMenuBar(menuBar);        
         //clearBoard();
     }
     

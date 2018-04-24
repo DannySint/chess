@@ -18,14 +18,14 @@ public class AggressivePlayer extends RandomPlayer
     
     public int[] requestMove()
     {
-        move = null;
-        movepool = new ArrayList<Move>();
+        this.move = null;
+        this.movepool = new ArrayList<Move>();
         int jump[] = new int[4];
         
         for (int i=0; i< this.getPieces().getNumPieces(); i++)
         {
             //store them in an arraylist
-            movepool.addAll(this.getPieces().getPiece(i).availableMoves());
+            this.movepool.addAll(this.getPieces().getPiece(i).availableMoves());
         }
         return returnCoords(jump);
     }
@@ -34,14 +34,14 @@ public class AggressivePlayer extends RandomPlayer
     {
         int currentMax = 0;
         //high piece
-        for (int i = 0; i < movepool.size(); i++)
+        for (int i = 0; i < this.movepool.size(); i++)
         {
-            if (movepool.get(i).getCaptured() == true)
+            if (this.movepool.get(i).getCaptured() == true)
             {
-                if (move.getCapturedValue(getBoard()) >  currentMax)
+                if (this.movepool.get(i).getCapturedValue(getBoard()) >  currentMax)
                 {
-                    currentMax = move.getCapturedValue(getBoard());
-                    move = movepool.get(i);
+                    currentMax = this.movepool.get(i).getCapturedValue(getBoard());
+                    this.move = this.movepool.get(i);
                 }
             }
         }
@@ -50,12 +50,12 @@ public class AggressivePlayer extends RandomPlayer
         if (currentMax == 0)
         {
             int randomNumber = (int)(Math.random() * this.movepool.size());
-            move = (this.movepool.get(randomNumber));
+            this.move = (this.movepool.get(randomNumber));
         }
-        jump[0] = move.getX();
-        jump[1] = move.getY();
-        jump[2] = move.getNewX();
-        jump[3] = move.getNewY();
+        jump[0] = this.move.getX();
+        jump[1] = this.move.getY();
+        jump[2] = this.move.getNewX();
+        jump[3] = this.move.getNewY();
         return jump;
     }
 
