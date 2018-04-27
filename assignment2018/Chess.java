@@ -40,7 +40,7 @@ public class Chess
         
         //construct 2 players
         white = new HumanPlayer("White", board.getWhite(), board, black);
-        black = new HumanPlayer("Black", board.getBlack(), board, white);
+        black = new AggressivePlayer("Black", board.getBlack(), board, white);
         
         white.setOpponent(black);
         turnNumber = 0;

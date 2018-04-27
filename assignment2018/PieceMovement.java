@@ -31,6 +31,7 @@ public abstract class PieceMovement extends Piece
             if (!getBoard().occupied(x,y)) 
             {
                 theMove = new Move(this, this.getX(), this.getY(), x, y, false);
+                //System.out.println(this + " Move: (" + theMove.getNewX() + x + ", " + theMove.getNewY() + y+ ")");
                 return theMove;
                 //movePool.add(theMove);
                 
@@ -45,6 +46,7 @@ public abstract class PieceMovement extends Piece
                     if (this.getBoard().getPiece(x, (y)).getColourChar() == 'b') 
                     {
                         theMove = new Move(this, this.getX(), this.getY(), (x), (y), true);
+                        //System.out.println(this + " Move: (" + theMove.getNewX() + x + ", " + theMove.getNewY() + y+ ")");
                         return theMove;
                         //movePool.add(theMove);
                     }
@@ -54,6 +56,7 @@ public abstract class PieceMovement extends Piece
                     if (this.getBoard().getPiece(x, (y)).getColourChar() == 'w') 
                     {
                         theMove = new Move(this, this.getX(), this.getY(), (x), (y), true);
+                        //System.out.println(this + " Move: (" + theMove.getNewX() + x + ", " + theMove.getNewY() + y+ ")");
                         return theMove;
                         //movePool.add(theMove);
                     }
@@ -63,6 +66,7 @@ public abstract class PieceMovement extends Piece
                 }
             }
         }
+        //System.out.println(this + " NULLED Move: (" + x + ", " +  y+ ")");
         return null;
     }
     

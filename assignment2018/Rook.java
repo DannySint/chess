@@ -20,13 +20,13 @@ public class Rook extends PieceMovement {
         int y = this.getY();
 
         //set up movePool to return the list of available moves
-        ArrayList<Move> movePool = new ArrayList<Move>();
+        ArrayList<Move> movepool = new ArrayList<Move>();
         
         //UP
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x, y+i) != null) //if the rook has encountered resistance, stop adding moves 
-                {movePool.add(moveFull((x), (y+i)));}
+                {movepool.add(moveFull((x), (y+i)));}
             else 
                 {break;}
         }
@@ -35,7 +35,7 @@ public class Rook extends PieceMovement {
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x+i, y) != null) //if the rook has encountered resistance, stop adding moves 
-                {movePool.add(moveFull((x+i), (y)));}
+                {movepool.add(moveFull((x+i), (y)));}
             else 
                 {break;}
         }
@@ -44,7 +44,7 @@ public class Rook extends PieceMovement {
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x, y-i) != null) //if the rook has encountered resistance, stop adding moves 
-                {movePool.add(moveFull((x), (y-i)));}
+                {movepool.add(moveFull((x), (y-i)));}
             else 
                 {break;}
         }
@@ -53,12 +53,12 @@ public class Rook extends PieceMovement {
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x-i, y) != null) //if the rook has encountered resistance, stop adding moves 
-                {movePool.add(moveFull((x-i), (y)));}
+                {movepool.add(moveFull((x-i), (y)));}
             else 
                 {break;}
         }
         
-        return movePool;
+        return movepool;
     }
 	
 }

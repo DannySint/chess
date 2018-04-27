@@ -2,6 +2,7 @@ package assignment2018;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
@@ -42,6 +43,8 @@ public class GraphicsDisplay extends JFrame implements Display
     private JMenu menu;
     private int maxX = 900;
     private int maxY = 900;
+    private JPanel chessboard;
+    
     
     
     public GraphicsDisplay(Board board)
@@ -54,60 +57,60 @@ public class GraphicsDisplay extends JFrame implements Display
         this.setBackground(Color.GRAY);
         this.menuBar = new JMenuBar();
         this.menu = new JMenu("New Game");
+        this.chessboard = new GraphicsPanel();
+        this.add(chessboard);
+        chessboard.setPreferredSize(new Dimension(900, 900));
+        chessboard.setLocation(100, 100);
+        labels = new JLabel[9][9];
     }
     
     @Override
     public void displayBoard(Pieces pieces)
     {
         //Container
-        contentPane = getContentPane();
-        clearBoard();
-        //JButton[] button = new JButton[4];
-        /*for (int i = 0; i < button.length; i++) 
-        {
-            button[i] = new JButton("Hello");
-            //contentPane.add(button[i]);
-        }*/
-        
-        //contentPane.setLayout(new FlowLayout());
-        
-        //BufferedImage king = new BufferedImage("king.jpg");
-
-         
-        contentPane.setLayout(new GridLayout(9, 9));        
-        
-        char a = 'a';
-        
-        label = new JLabel[81];
-        labels = new JLabel[9][9];
-        
-        for (int rows = 0; rows < labels.length; rows++)
-        {
-            for (int cols = 0; cols < labels[rows].length; cols++)
-            {
-                if (rows == 0)
-                {
-                    labels[rows][cols] = new JLabel(String.valueOf(text.charAt(cols)) );// + "/" + (cols-1));
-                }
-                else if (cols % 9 == 0) 
-                {
-                    labels[rows][cols] = new JLabel("" + (rows-1));
-                }
-                else
-                {
-                    labels[rows][cols] = new JLabel("(" + rows + ", " + cols + ")");
-                    pieceCode = coordsToPieceCode(board, (rows-1), (cols-1));
-                    if (pieceCode != null)
-                    {labels[rows][cols] = new JLabel(pieceCode);}
-                    
-                }
-                contentPane.add(labels[rows][cols]);
-            }
-        }
-        
-        //Menu stuff 
-        
-        this.setJMenuBar(menuBar);
+//        contentPane = getContentPane();
+//        
+//        clearBoard();
+//
+//        
+//        contentPane.setLayout(new GridLayout(9, 9));        
+//        
+//        char a = 'a';
+//        
+//        
+//        
+//        
+//        for (int rows = 0; rows < labels.length; rows++)
+//        {
+//            for (int cols = 0; cols < labels[rows].length; cols++)
+//            {
+//                if (rows == 0)
+//                {
+//                    labels[rows][cols] = new JLabel(String.valueOf(text.charAt(cols)) );// + "/" + (cols-1));
+//                }
+//                else if (cols % 9 == 0) 
+//                {
+//                    labels[rows][cols] = new JLabel("" + (rows-1));
+//                }
+//                else
+//                {
+//                    labels[rows][cols] = new JLabel("(" + rows + ", " + cols + ")");
+//                    pieceCode = coordsToPieceCode(board, (rows-1), (cols-1));
+//                    if (pieceCode != null)
+//                    {labels[rows][cols] = new JLabel(pieceCode);}
+//                    //g.draw(blackQueen) i * 
+//                    
+//                }
+//                contentPane.add(labels[rows][cols]);
+//            }
+//        }
+//        invalidate();
+//        repaint();
+//        //Menu stuff 
+//        
+//        this.setJMenuBar(menuBar);
+        chessboard.invalidate();
+        chessboard.repaint();
          
     }
     

@@ -20,36 +20,36 @@ public class Knight extends PieceMovement
         int y = this.getY();
 
         // set up movePool to return the list of available moves
-        ArrayList<Move> movePool = new ArrayList<Move>();
+        ArrayList<Move> movepool = new ArrayList<Move>();
         
         //Right 2
             //Up 1
-        movePool.addAll(this.moveSingle(x+2, y+1));
+        movepool.addAll(this.moveSingle(x+2, y+1));
             //Down 1
-        movePool.addAll(this.moveSingle(x+2, y-1));
+        movepool.addAll(this.moveSingle(x+2, y-1));
         
         //Left 2
             //Up 1
-        movePool.addAll(this.moveSingle(x-2, y+1));
+        movepool.addAll(this.moveSingle(x-2, y+1));
             //Down 1
-        movePool.addAll(this.moveSingle(x-2, y-1));
+        movepool.addAll(this.moveSingle(x-2, y-1));
         
         
         //Up 2
             //Right 1
-        movePool.addAll(this.moveSingle(x+1, y+2));
+        movepool.addAll(this.moveSingle(x+1, y+2));
             //Left 1
-        movePool.addAll(this.moveSingle(x-1, y+2));
+        movepool.addAll(this.moveSingle(x-1, y+2));
         //Down 2
             //Left 1
         
         //Down 2
             //Right 1
-        movePool.addAll(this.moveSingle(x+1, y-2));
+        movepool.addAll(this.moveSingle(x+1, y-2));
             //Left 1
-        movePool.addAll(this.moveSingle(x-1, y-2));
+        movepool.addAll(this.moveSingle(x-1, y-2));
         
-        return movePool;
+        return movepool;
     }
 
 }

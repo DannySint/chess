@@ -17,6 +17,7 @@ public class GraphicsPanel extends JPanel {
     private Board board;
     private int maxX = 900;
     private int maxY = 900;
+    
     public GraphicsPanel()
     {
         this.setPreferredSize(new Dimension(this.maxX,this.maxY));
@@ -48,7 +49,7 @@ public class GraphicsPanel extends JPanel {
                 {
                     g.setColor(Color.GRAY);
                 }
-                g.fillRect((i*100), (j*100), (i*100)+100, (j*100)+100);
+                g.fillRect((i*(this.maxX/9)), (j*(this.maxY/9)), (i*(this.maxX/9))+(this.maxX/9), (j*(this.maxY/9))+(this.maxY/9));
                 //g.fillRect((i*maxX/9), (j*maxY/9), (i*this.maxX/9)+50, ((j*this.maxY/9))+50);
             }
         }

@@ -27,26 +27,31 @@ public class Board {
      */
     public boolean setPosition(int x, int y, Piece thePiece) 
     {
-        thePiece.setPosition(x, y);
-        //If the board is not empty and the opposite colour piece exists in the occupied piece is deleted.
-        if (board[x][y] != null && board[x][y].getColourChar() != thePiece.getColourChar())
+        if (board[x][y] == null) //if board is empty
         {
-            switch (board[x][y].getColourChar()) 
-            {
-            case 'b':
-                black.delete(board[x][y]);
-                break;
-            case 'w':
-                white.delete(board[x][y]);
-                break;
-            }
-        } 
-        else if(board[x][y] != null)  //then the piece must contain a member of its so it cannot move 
+            thePiece.setPosition(x, y);
+            return true;
+        }
+        else if ((board[x][y] != null) && (board[x][y].getColourChar() == thePiece.getColourChar()))
+        //if piece is same colour as occupied pieces
         {
             return false;
         }
-        board[x][y] = thePiece;
-        return true;
+        else if ((board[x][y] != null) && board[x][y].getColourChar() != thePiece.getColourChar())
+        {
+            switch (board[x][y].getColourChar())
+            {
+            case 'b' :
+                black.delete(board[x][y]);
+            break;
+            case 'w' :
+                white.delete(board[x][y]);
+            break;
+            }
+            thePiece.setPosition(x, y);
+            return true;
+        }
+        return false;
     }
 
     /**
