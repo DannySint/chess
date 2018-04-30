@@ -37,7 +37,6 @@ public class GraphicsDisplay extends JFrame implements Display
     private Container contentPane;
     private int[] coords;
     private String pieceCode = "";
-    private JLabel[] label;
     private JLabel[][] labels;
     private JMenuBar menuBar;
     private JMenu menu;
@@ -57,58 +56,16 @@ public class GraphicsDisplay extends JFrame implements Display
         this.setBackground(Color.GRAY);
         this.menuBar = new JMenuBar();
         this.menu = new JMenu("New Game");
-        this.chessboard = new GraphicsPanel();
+        this.chessboard = new GraphicsPanel(board);
         this.add(chessboard);
         chessboard.setPreferredSize(new Dimension(900, 900));
-        chessboard.setLocation(100, 100);
         labels = new JLabel[9][9];
     }
-    
-    @Override
-    public void displayBoard(Pieces pieces)
+    public void displayBoard(Pieces pieces) {}
+    public void showBoard(Board board)
     {
-        //Container
-//        contentPane = getContentPane();
-//        
-//        clearBoard();
-//
-//        
-//        contentPane.setLayout(new GridLayout(9, 9));        
-//        
-//        char a = 'a';
-//        
-//        
-//        
-//        
-//        for (int rows = 0; rows < labels.length; rows++)
-//        {
-//            for (int cols = 0; cols < labels[rows].length; cols++)
-//            {
-//                if (rows == 0)
-//                {
-//                    labels[rows][cols] = new JLabel(String.valueOf(text.charAt(cols)) );// + "/" + (cols-1));
-//                }
-//                else if (cols % 9 == 0) 
-//                {
-//                    labels[rows][cols] = new JLabel("" + (rows-1));
-//                }
-//                else
-//                {
-//                    labels[rows][cols] = new JLabel("(" + rows + ", " + cols + ")");
-//                    pieceCode = coordsToPieceCode(board, (rows-1), (cols-1));
-//                    if (pieceCode != null)
-//                    {labels[rows][cols] = new JLabel(pieceCode);}
-//                    //g.draw(blackQueen) i * 
-//                    
-//                }
-//                contentPane.add(labels[rows][cols]);
-//            }
-//        }
-//        invalidate();
-//        repaint();
-//        //Menu stuff 
-//        
 //        this.setJMenuBar(menuBar);
+        
         chessboard.invalidate();
         chessboard.repaint();
          

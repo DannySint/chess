@@ -40,12 +40,20 @@ public class Chess
         
         //construct 2 players
         white = new HumanPlayer("White", board.getWhite(), board, black);
-        black = new AggressivePlayer("Black", board.getBlack(), board, white);
+        black = new HumanPlayer("Black", board.getBlack(), board, white);
         
         white.setOpponent(black);
         turnNumber = 0;
     }
     
+    /**
+     * Main game loop is run here.
+     * Writes instructions for users
+     * Initialises current player as white 
+     * Updates graphics and texts display
+     * Reloops if user's move is invalid
+     * Checks if a king is taken each turn and if so ends
+     */
     public void run()
     {
         //Instructions for user
@@ -65,7 +73,6 @@ public class Chess
         updateGraphicsDisplay();
         do 
         {
-            
             legal = false; //reset legal (just in case)
             
             legal = current.makeMove();
@@ -79,10 +86,13 @@ public class Chess
             
         } while (kingTaken() == Winner.NONE);
         //} while (turnNumber(turnNumber) <= 12);
-        graphicsDisplay.reset(); 
+        graphicsDisplay.reset();
         
     }
     
+    /**
+     * Congratulations are in order to the grand winner of the 2018 Chess Tournament
+     */
     public void omedeto()
     {
         if (winner == Winner.BLACK) {System.out.println("Congratulations black team");}
@@ -90,6 +100,14 @@ public class Chess
         else {System.out.println("Nobody won or idk wtf happened");}
     }
 	
+    /**
+     * Originally for the actual movement this piece of code is for the test classes.
+     * @param x current x position of piece
+     * @param y current y position of piece
+     * @param newX hopeful x position of piece
+     * @param newY hopeful y position of piece
+     * @return whether the move was legal or not
+     */
 	public boolean warp(int x, int y, int newX, int newY) 
 	{
         Move move = new Move(board.getPiece(x, y), x, y, newX, newY, false);
@@ -105,6 +123,12 @@ public class Chess
         return legal;
 	}
 
+	/**
+	 * 
+	 * @return winner.NONE while the game's still running, 
+	 * @return winner.BLACK if black has won or 
+	 * @return winner.WHITE if white has won
+	 */
     public Winner kingTaken() 
     {
         boolean whiteKing = false;
@@ -133,18 +157,23 @@ public class Chess
         return winner;
     }
     
-    
+    /**
+     * Display the board via the console.
+     * Adds the pieces to the board
+     * Then displays them.
+     */
 	public void updateTextDisplay() 
 	{          
 	    display.addPieces(board.getWhite());
 	    display.addPieces(board.getBlack());
-	    display.displayBoard(board.getWhite()); //shouldn't need the pieces to display the board.
+	    display.displayBoard(board.getWhite()); //shouldn't need the pieces to display the board. 
+	    //I don't know why this is a thing. I've thought about this and I don't really want to update the board each turn
+	    //for each player's pieces. Its a nice concept but really unnecessary.
 	}
+	
 	public void updateGraphicsDisplay()
 	{
-	    //graphicsDisplay.addPieces(board.getWhite());
-	    //graphicsDisplay.addPieces(board.getBlack());
-	    graphicsDisplay.displayBoard(board.getWhite());
+	    graphicsDisplay.showBoard(board);
 	}
 	
    public static void main(String[] args) 

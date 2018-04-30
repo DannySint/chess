@@ -25,7 +25,7 @@ public class Board {
      * @param y
      * @param thePiece
      */
-    public boolean setPosition(int x, int y, Piece thePiece) 
+    /*public boolean setPosition(int x, int y, Piece thePiece) 
     {
         if (board[x][y] == null) //if board is empty
         {
@@ -52,16 +52,26 @@ public class Board {
             return true;
         }
         return false;
+    }*/
+    
+    /**
+     * Initial piece set up
+     * @param x coordinate for where the piece is set to
+     * @param y coordinate for where the piece is set to
+     * @param thePiece the piece in question
+     */
+    public void setPosition(int x, int y, Piece thePiece) 
+    {
+        board[x][y] = thePiece;
     }
+    
+    
 
     /**
      * Method that checks if user supplied coordinates are outside of the board's
      * range
-     * 
-     * @param x
-     *            is the passed x coordinate
-     * @param y
-     *            is the passed y coordinate
+     * @param x is the passed x coordinate
+     * @param y is the passed y coordinate
      * @return true if coordinates are out of range
      * @return false if coordinates are fine
      */
@@ -75,10 +85,39 @@ public class Board {
         return false;
     }
 
-    public void insertPiece() {
+    public boolean insertPiece(int x, int y, Piece thePiece) 
+    {
+        if (this.getPiece(x, y) == null) //if board is empty
+        {
+            thePiece.setPosition(x, y);
+            return true;
+        }
+        else if ((this.getPiece(x, y) != null) && (this.getPiece(x, y).getColourChar() == thePiece.getColourChar()))
+        //if piece is same colour as occupied pieces
+        {
+            System.out.println("The piece you are trying to take is on your team.");
+            return false;
+        }
+        else if ((this.getPiece(x, y) != null) && this.getPiece(x, y).getColourChar() != thePiece.getColourChar())
+        {
+            switch (this.getPiece(x, y).getColourChar())
+            {
+            case 'b' :
+                black.delete(this.getPiece(x, y));
+            break;
+            case 'w' :
+                white.delete(this.getPiece(x, y));
+            break;
+            }
+            thePiece.setPosition(x, y);
+            return true;
+        }
+        return false;
+        
     }
 
-    public void removePiece() {
+    public void removePiece(int x, int y) 
+    {
     }
 
     /**

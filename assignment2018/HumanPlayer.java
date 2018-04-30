@@ -28,7 +28,7 @@ public class HumanPlayer extends Player
         {
             if(move[2] == m.getNewX() && move[3] == m.getNewY()) 
             {
-                return getBoard().setPosition(move[2], move[3], piece);
+                return getBoard().insertPiece(move[2], move[3], piece);
             }
         }
         System.out.println("Your designated move was illegal.");
