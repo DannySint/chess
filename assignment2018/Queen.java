@@ -35,7 +35,11 @@ public class Queen extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x+i, y+i) != null) //if the queen has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x+i), (y+i)));}
+                {
+                    movepool.add(moveFull((x+i), (y+i)));
+                    if (getBoard().occupied(x+i, y+i))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -44,7 +48,11 @@ public class Queen extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x+i, y) != null) //if the queen has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x+i), (y)));}
+                {
+                    movepool.add(moveFull((x+i), (y)));
+                    if (getBoard().occupied(x+i, y))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -53,7 +61,11 @@ public class Queen extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x+i, y-i) != null) //if the queen has encountered resistance, stop adding moves 
-                {movepool.add(moveFull(x+i, y-i));}
+                {
+                    movepool.add(moveFull(x+i, y-i));
+                    if (getBoard().occupied(x+i, y-i))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -63,7 +75,11 @@ public class Queen extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x, y-i) != null) //if the queen has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x), (y-i)));}
+                {
+                    movepool.add(moveFull((x), (y-i)));
+                    if (getBoard().occupied(x, y-i))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -72,7 +88,12 @@ public class Queen extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x-i, y-i) != null) //if the queen has encountered resistance, stop adding moves 
-                {movepool.add(moveFull(x-i, y-i));}
+                {
+                    movepool.add(moveFull(x-i, y-i));
+                    if (getBoard().occupied(x-i, y-i))
+                    {break;}
+                }
+            
             else 
                 {break;}
         }
@@ -81,7 +102,11 @@ public class Queen extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x-i, y) != null) //if the queen has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x-i), (y)));}
+                {
+                    movepool.add(moveFull((x-i), (y)));
+                    if (getBoard().occupied(x-i, y))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -90,7 +115,11 @@ public class Queen extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x-i, y+i) != null) //if the queen has encountered resistance, stop adding moves 
-                {movepool.add(moveFull(x-i, y+i));}
+                {
+                    movepool.add(moveFull(x-i, y+i));
+                    if (getBoard().occupied(x-i, y+i))
+                    {break;}
+                }
             else 
                 {break;}
         }

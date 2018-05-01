@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import assignment2018.codeprovided.PieceCode;
 
+/**
+ * Class representing Rooks
+ * Rook extends from PieceMovement's methods that extends from Piece
+ * The rook can move UP, RIGHT, DOWN, LEFT so there are 4 loops that break upon contact with another player 
+ * @author Danny
+ *
+ */
 public class Rook extends PieceMovement {
 
     public Rook(int ix, int iy, int c, Board b) 
@@ -26,7 +33,11 @@ public class Rook extends PieceMovement {
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x, y+i) != null) //if the rook has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x), (y+i)));}
+                {
+                    movepool.add(moveFull((x), (y+i)));
+                    if (getBoard().occupied(x, y+i))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -35,7 +46,11 @@ public class Rook extends PieceMovement {
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x+i, y) != null) //if the rook has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x+i), (y)));}
+                {
+                    movepool.add(moveFull((x+i), (y)));
+                    if (getBoard().occupied(x+i, y))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -44,7 +59,11 @@ public class Rook extends PieceMovement {
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x, y-i) != null) //if the rook has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x), (y-i)));}
+                {
+                    movepool.add(moveFull((x), (y-i)));
+                    if (getBoard().occupied(x, y-i))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -53,7 +72,11 @@ public class Rook extends PieceMovement {
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x-i, y) != null) //if the rook has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x-i), (y)));}
+                {
+                    movepool.add(moveFull((x-i), (y)));
+                    if (getBoard().occupied(x-i, y))
+                    {break;}
+                }
             else 
                 {break;}
         }

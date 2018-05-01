@@ -6,6 +6,11 @@ import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.Pieces;
 import assignment2018.codeprovided.Player;
 
+/**
+ * This is the 
+ * @author Admin
+ *
+ */
 public class HumanPlayer extends Player
 {
     
@@ -18,6 +23,11 @@ public class HumanPlayer extends Player
         super(name, pieces, board, opponent);
     }
 
+    /**
+     * 
+     * @return true if the requested move exists within the piece's available moves
+     * @return false 
+     */
     @Override
     public boolean makeMove() 
     {

@@ -6,29 +6,24 @@ import assignment2018.codeprovided.Player;
  * Main class of Chess where the game runs off
  * 
  * @author Danny
- * 19th April 2018
+ * Start @date 19th April 2018
+ * End @date  
  */
 public class Chess 
 {
+    
+    //instance variables
     private enum Winner {WHITE, BLACK, NONE};
     
     private Board board;
     private TextDisplay display;
     private GraphicsDisplay graphicsDisplay;
-    private Move move;
     private Player white;
     private Player black;
     private int turnNumber;
     private boolean legal;
     private Winner winner;
-    
-    private String from = "";
-    private String to = "";
-    private int[] jump;
-    
-    private int x = 0;
-    private int y = 0;
-    
+        
     public Chess()
     {
         //construct board
@@ -39,8 +34,8 @@ public class Chess
         graphicsDisplay = new GraphicsDisplay(board);
         
         //construct 2 players
-        white = new HumanPlayer("White", board.getWhite(), board, black);
-        black = new HumanPlayer("Black", board.getBlack(), board, white);
+        white = new RandomPlayer("White", board.getWhite(), board, black);
+        black = new RandomPlayer("Black", board.getBlack(), board, white);
         
         white.setOpponent(black);
         turnNumber = 0;
@@ -73,13 +68,14 @@ public class Chess
         updateGraphicsDisplay();
         do 
         {
+            turnNumber++;
+            System.out.println("Turn Number: " + turnNumber);
             legal = false; //reset legal (just in case)
             
             legal = current.makeMove();
             if (legal)
             {
                 current = current.getOpponent();
-                turnNumber++;
             }
             updateTextDisplay();
             updateGraphicsDisplay();
@@ -101,7 +97,7 @@ public class Chess
     }
 	
     /**
-     * Originally for the actual movement this piece of code is for the test classes.
+     * Originally for the actual movement, this piece of code is now used for the test classes.
      * @param x current x position of piece
      * @param y current y position of piece
      * @param newX hopeful x position of piece
@@ -124,7 +120,6 @@ public class Chess
 	}
 
 	/**
-	 * 
 	 * @return winner.NONE while the game's still running, 
 	 * @return winner.BLACK if black has won or 
 	 * @return winner.WHITE if white has won
@@ -150,9 +145,9 @@ public class Chess
                 blackKing = true;
             }
         }
-        if (whiteKing && blackKing) {winner = winner.NONE;}
-        if (!whiteKing) {winner = winner.BLACK;}
-        if (!blackKing) {winner = winner.WHITE;}
+        if (whiteKing && blackKing) {winner = Winner.NONE;}
+        if (!whiteKing) {winner = Winner.BLACK;}
+        if (!blackKing) {winner = Winner.WHITE;}
         this.winner = winner;
         return winner;
     }
@@ -171,6 +166,9 @@ public class Chess
 	    //for each player's pieces. Its a nice concept but really unnecessary.
 	}
 	
+	/**
+	 * Updates the graphical user interface
+	 */
 	public void updateGraphicsDisplay()
 	{
 	    graphicsDisplay.showBoard(board);

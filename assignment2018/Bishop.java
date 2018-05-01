@@ -26,7 +26,11 @@ public class Bishop extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x+i, y+i) != null) //if the bishop has encountered resistance, stop adding moves 
-                {movepool.add(moveFull((x+i), (y+i)));}
+                {
+                    movepool.add(moveFull((x+i), (y+i)));
+                    if (getBoard().occupied(x+i, y+i))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -35,7 +39,11 @@ public class Bishop extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x-i, y+i) != null) //if the bishop has encountered resistance, stop adding moves 
-                {movepool.add(moveFull(x-i, y+i));}
+                {
+                    movepool.add(moveFull(x-i, y+i));
+                    if (getBoard().occupied(x-i, y+i))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -44,7 +52,11 @@ public class Bishop extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x-i, y-i) != null) //if the bishop has encountered resistance, stop adding moves 
-                {movepool.add(moveFull(x-i, y-i));}
+                {
+                    movepool.add(moveFull(x-i, y-i));
+                    if (getBoard().occupied(x-i, y-i))
+                    {break;}
+                }
             else 
                 {break;}
         }
@@ -53,7 +65,11 @@ public class Bishop extends PieceMovement
         for (int i = 1; i < 7; i++)
         {
             if (moveFull(x+i, y-i) != null) //if the bishop has encountered resistance, stop adding moves 
-                {movepool.add(moveFull(x+i, y-i));}
+                {
+                    movepool.add(moveFull(x+i, y-i));
+                    if (getBoard().occupied(x+i, y-i))
+                    {break;}
+                }
             else 
                 {break;}
         }

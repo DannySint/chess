@@ -25,7 +25,11 @@ public class AggressivePlayer extends RandomPlayer
         for (int i=0; i< this.getPieces().getNumPieces(); i++)
         {
             //store them in an arraylist
-            this.movepool.addAll(this.getPieces().getPiece(i).availableMoves());
+            if (this.getPieces().getPiece(i).availableMoves() != null)
+            {
+                movepool.addAll(this.getPieces().getPiece(i).availableMoves());
+            }
+
         }
         return returnCoords(jump);
     }

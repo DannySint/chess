@@ -24,7 +24,10 @@ public class RandomPlayer extends Player
         for (int i=0; i< this.getPieces().getNumPieces(); i++)
         {
             //store them in an arraylist
-            movepool.addAll(this.getPieces().getPiece(i).availableMoves());
+            if (this.getPieces().getPiece(i).availableMoves() != null)
+            {
+                movepool.addAll(this.getPieces().getPiece(i).availableMoves());
+            }
         }
         return returnRandomCoords(jump);
     }
@@ -45,6 +48,7 @@ public class RandomPlayer extends Player
     public boolean makeMove() 
     {
         int[] move = requestMove();
+        System.out.println("Random Move: " + "(" + move[0] + ", " + move[1] + ") to (" + move[2] + ", " + move[3] + ")");
         Piece piece = getBoard().getPiece(move[0], move[1]);
         
         for(Move m : piece.availableMoves()) 
@@ -52,8 +56,7 @@ public class RandomPlayer extends Player
             if(move[2] == m.getNewX() && move[3] == m.getNewY()) 
             {
                 System.out.println(getBoard().getPiece(move[0], move[1]));
-                System.out.println("Random Move: " + "(" + move[0] + ", " + move[1] + ") to (" + move[2] + ", " + move[3] + ")");
-                return getBoard().setPosition(move[2], move[3], piece);
+                return getBoard().insertPiece(move[2], move[3], piece);
             }
         }
         System.out.println("Your designated move was illegal.");

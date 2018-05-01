@@ -17,7 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
 import assignment2018.codeprovided.Display;
@@ -40,8 +42,8 @@ public class GraphicsDisplay extends JFrame implements Display
     private JLabel[][] labels;
     private JMenuBar menuBar;
     private JMenu menu;
-    private int maxX = 900;
-    private int maxY = 900;
+    private int maxX = 920;
+    private int maxY = 950;
     private JPanel chessboard;
     
     
@@ -58,8 +60,22 @@ public class GraphicsDisplay extends JFrame implements Display
         this.menu = new JMenu("New Game");
         this.chessboard = new GraphicsPanel(board);
         this.add(chessboard);
-        chessboard.setPreferredSize(new Dimension(900, 900));
+        chessboard.setPreferredSize(new Dimension(920, 950));
         labels = new JLabel[9][9];
+        
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Game...", true);
+        JMenu subMenu = new JMenu("New Game!", true);
+        subMenu.add("Human vs Human");
+        subMenu.add("Human vs Random Player");
+        subMenu.add("Human vs Aggressive Player");
+        menu.add("Exit");
+        //subMenu.add("Sub Item One");
+        menu.add(subMenu);
+        menuBar.add(menu);
+        setJMenuBar(menuBar);
+        
+        
     }
     public void displayBoard(Pieces pieces) {}
     public void showBoard(Board board)
