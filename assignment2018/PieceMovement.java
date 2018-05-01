@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import assignment2018.codeprovided.Piece;
 
+/**
+ * Abstract class for Piece's to use the functions moveFull() and moveSingle()
+ * 
+ * @author Danny
+ *
+ */
+
 public abstract class PieceMovement extends Piece
 {
     public PieceMovement(int i, int ix, int iy, int c, Board b) 
@@ -31,9 +38,7 @@ public abstract class PieceMovement extends Piece
             if (!getBoard().occupied(x,y)) 
             {
                 theMove = new Move(this, this.getX(), this.getY(), x, y, false);
-                //System.out.println(this + " Move: (" + theMove.getNewX() + x + ", " + theMove.getNewY() + y+ ")");
                 return theMove;
-                //movePool.add(theMove);
                 
             }
             else //check collision
@@ -46,9 +51,7 @@ public abstract class PieceMovement extends Piece
                     if (this.getBoard().getPiece(x, (y)).getColourChar() == 'b') 
                     {
                         theMove = new Move(this, this.getX(), this.getY(), (x), (y), true);
-                        //System.out.println(this + " Move: (" + theMove.getNewX() + x + ", " + theMove.getNewY() + y+ ")");
                         return theMove;
-                        //movePool.add(theMove);
                     }
                     break;
                     
@@ -56,9 +59,7 @@ public abstract class PieceMovement extends Piece
                     if (this.getBoard().getPiece(x, (y)).getColourChar() == 'w') 
                     {
                         theMove = new Move(this, this.getX(), this.getY(), (x), (y), true);
-                        //System.out.println(this + " Move: (" + theMove.getNewX() + x + ", " + theMove.getNewY() + y+ ")");
                         return theMove;
-                        //movePool.add(theMove);
                     }
                     if (this.getBoard().getPiece(x, (y)).getColourChar() == 'b') 
                     {}
@@ -66,7 +67,6 @@ public abstract class PieceMovement extends Piece
                 }
             }
         }
-        //System.out.println(this + " NULLED Move: (" + x + ", " +  y+ ")");
         return null;
     }
     

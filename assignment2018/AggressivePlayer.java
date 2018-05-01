@@ -5,17 +5,23 @@ import java.util.ArrayList;
 import assignment2018.codeprovided.Pieces;
 import assignment2018.codeprovided.Player;
 
+/**
+ * Class for an AggressivePlayer requests moves that would take the higher value piece
+ * of its opponent. If such moves are unavailable the player reverts to using random available moves.
+ * @author Danny
+ */
+
 public class AggressivePlayer extends RandomPlayer 
 {
     private ArrayList<Move> movepool;
     private Move move;
-    private int randomNumber;
     
     public AggressivePlayer(String name, Pieces pieces, Board board, Player opponent) 
     {
         super(name, pieces, board, opponent);
     }
     
+    @Override
     public int[] requestMove()
     {
         this.move = null;
@@ -37,7 +43,7 @@ public class AggressivePlayer extends RandomPlayer
     public int[] returnCoords(int[] jump)
     {
         int currentMax = 0;
-        //high piece
+        //take highest value piece
         for (int i = 0; i < this.movepool.size(); i++)
         {
             if (this.movepool.get(i).getCaptured() == true)

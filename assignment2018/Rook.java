@@ -30,7 +30,7 @@ public class Rook extends PieceMovement {
         ArrayList<Move> movepool = new ArrayList<Move>();
         
         //UP
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x, y+i) != null) //if the rook has encountered resistance, stop adding moves 
                 {
@@ -43,7 +43,7 @@ public class Rook extends PieceMovement {
         }
         
         //RIGHT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x+i, y) != null) //if the rook has encountered resistance, stop adding moves 
                 {
@@ -56,7 +56,7 @@ public class Rook extends PieceMovement {
         }
         
         //DOWN
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x, y-i) != null) //if the rook has encountered resistance, stop adding moves 
                 {
@@ -69,7 +69,7 @@ public class Rook extends PieceMovement {
         }
         
         //LEFT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x-i, y) != null) //if the rook has encountered resistance, stop adding moves 
                 {

@@ -23,7 +23,7 @@ public class Bishop extends PieceMovement
         ArrayList<Move> movepool = new ArrayList<Move>();
         
         //UP and RIGHT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x+i, y+i) != null) //if the bishop has encountered resistance, stop adding moves 
                 {
@@ -36,7 +36,7 @@ public class Bishop extends PieceMovement
         }
         
         //UP and LEFT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x-i, y+i) != null) //if the bishop has encountered resistance, stop adding moves 
                 {
@@ -49,7 +49,7 @@ public class Bishop extends PieceMovement
         }
         
         //DOWN and LEFT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x-i, y-i) != null) //if the bishop has encountered resistance, stop adding moves 
                 {
@@ -62,7 +62,7 @@ public class Bishop extends PieceMovement
         }
         
         //DOWN and RIGHT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x+i, y-i) != null) //if the bishop has encountered resistance, stop adding moves 
                 {

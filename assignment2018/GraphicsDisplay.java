@@ -27,10 +27,11 @@ import assignment2018.codeprovided.PieceCode;
 import assignment2018.codeprovided.Pieces;
 
 /**
+ * GraphicsDisplay class 
  * Image source: https://cdn.pixabay.com/photo/2012/04/10/22/54/chess-26774_960_720.png
  * Free for commercial use - edited by Danny
  * @author Danny
- *
+ * 
  */
 public class GraphicsDisplay extends JFrame implements Display
 {
@@ -45,8 +46,6 @@ public class GraphicsDisplay extends JFrame implements Display
     private int maxX = 920;
     private int maxY = 950;
     private JPanel chessboard;
-    
-    
     
     public GraphicsDisplay(Board board)
     {
@@ -66,7 +65,7 @@ public class GraphicsDisplay extends JFrame implements Display
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Game...", true);
         JMenu subMenu = new JMenu("New Game!", true);
-        subMenu.add("Human vs Human");
+        subMenu.add("Human vs Human"); //add actionlisteners
         subMenu.add("Human vs Random Player");
         subMenu.add("Human vs Aggressive Player");
         menu.add("Exit");

@@ -7,14 +7,12 @@ import assignment2018.codeprovided.Player;
  * 
  * @author Danny
  * Start @date 19th April 2018
- * End @date  
+ * End @date 1st May 2018
  */
 public class Chess 
 {
     
     //instance variables
-    private enum Winner {WHITE, BLACK, NONE};
-    
     private Board board;
     private TextDisplay display;
     private GraphicsDisplay graphicsDisplay;
@@ -22,8 +20,13 @@ public class Chess
     private Player black;
     private int turnNumber;
     private boolean legal;
+    private enum Winner {WHITE, BLACK, NONE};
     private Winner winner;
-        
+
+    /**
+     * Constructor for chess that constructs chess object with:
+     * the board, the displays, the players with their pieces
+     */
     public Chess()
     {
         //construct board
@@ -35,7 +38,7 @@ public class Chess
         
         //construct 2 players
         white = new RandomPlayer("White", board.getWhite(), board, black);
-        black = new RandomPlayer("Black", board.getBlack(), board, white);
+        black = new AggressivePlayer("Black", board.getBlack(), board, white);
         
         white.setOpponent(black);
         turnNumber = 0;
@@ -46,7 +49,7 @@ public class Chess
      * Writes instructions for users
      * Initialises current player as white 
      * Updates graphics and texts display
-     * Reloops if user's move is invalid
+     * loops if user's move is invalid
      * Checks if a king is taken each turn and if so ends
      */
     public void run()
@@ -85,16 +88,6 @@ public class Chess
         graphicsDisplay.reset();
         
     }
-    
-    /**
-     * Congratulations are in order to the grand winner of the 2018 Chess Tournament
-     */
-    public void omedeto()
-    {
-        if (winner == Winner.BLACK) {System.out.println("Congratulations black team");}
-        else if (winner == Winner.WHITE) {System.out.println("Congratulations to white team");}
-        else {System.out.println("Nobody won or idk wtf happened");}
-    }
 	
     /**
      * Originally for the actual movement, this piece of code is now used for the test classes.
@@ -118,7 +111,28 @@ public class Chess
         }
         return legal;
 	}
-
+	
+    /**
+     * Display the board via the console.
+     * Adds the pieces to the board
+     * Then displays them.
+     */
+    public void updateTextDisplay() 
+    {          
+        display.addPieces(board.getWhite());
+        display.addPieces(board.getBlack());
+        display.displayBoard(board.getWhite()); //shouldn't need the pieces to display the board. 
+        //I don't know why this is a thing. I've thought about this and I don't really want to update the board each turn
+        //for each player's pieces. Its a nice concept but really unnecessary.
+    }
+    
+    /**
+     * Updates the graphical user interface
+     */
+    public void updateGraphicsDisplay()
+    {
+        graphicsDisplay.showBoard(board);
+    }
 	/**
 	 * @return winner.NONE while the game's still running, 
 	 * @return winner.BLACK if black has won or 
@@ -129,7 +143,7 @@ public class Chess
         boolean whiteKing = false;
         boolean blackKing = false;
         Winner winner = Winner.NONE;
-        for (int piece = 0; piece < board.getWhite().getNumPieces(); piece++)
+        for (int piece=0; piece < board.getWhite().getNumPieces(); piece++)
         {
             if (board.getWhite().getPiece(piece).getChar() == 'k')
             {
@@ -138,7 +152,7 @@ public class Chess
             }
         }
         
-        for (int piece = 0; piece < board.getBlack().getNumPieces(); piece++)
+        for (int piece=0; piece < board.getBlack().getNumPieces(); piece++)
         {
             if (board.getBlack().getPiece(piece).getChar() == 'K')
             {
@@ -151,33 +165,21 @@ public class Chess
         this.winner = winner;
         return winner;
     }
-    
-    /**
-     * Display the board via the console.
-     * Adds the pieces to the board
-     * Then displays them.
-     */
-	public void updateTextDisplay() 
-	{          
-	    display.addPieces(board.getWhite());
-	    display.addPieces(board.getBlack());
-	    display.displayBoard(board.getWhite()); //shouldn't need the pieces to display the board. 
-	    //I don't know why this is a thing. I've thought about this and I don't really want to update the board each turn
-	    //for each player's pieces. Its a nice concept but really unnecessary.
-	}
 	
 	/**
-	 * Updates the graphical user interface
-	 */
-	public void updateGraphicsDisplay()
-	{
-	    graphicsDisplay.showBoard(board);
-	}
+     * Congratulations are in order to the grand winner of the 2018 Chess Tournament
+     */
+    public void omedeto() //congratulations
+    {
+        if (winner == Winner.BLACK) {System.out.println("Congratulations black team");}
+        else if (winner == Winner.WHITE) {System.out.println("Congratulations to white team");}
+        else {System.out.println("Nobody won or idk wtf happened");}
+    }
 	
    public static void main(String[] args) 
     {
-       Chess c = new Chess();
-       c.run();
-       c.omedeto();
+       Chess chess = new Chess();
+       chess.run();
+       chess.omedeto(); //omedeto means congratulations
     }
 }

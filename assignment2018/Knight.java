@@ -4,18 +4,26 @@ import java.util.ArrayList;
 
 import assignment2018.codeprovided.PieceCode;
 
+/**
+ * The Knight Piece class inheriting PieceMovement 
+ * @author Danny
+ */
 public class Knight extends PieceMovement
 {
-
+    
     public Knight(int ix, int iy, int c, Board b) 
     {
         super(PieceCode.KNIGHT, ix, iy, c, b);
     }
     
+    /**
+     * All the Knight's available moves are added to the movepool.
+     * @return movepool
+     */
     @Override
     public ArrayList<Move> availableMoves() 
     {
-        // obtain current co-ordinates
+        // obtain current coordinates
         int x = this.getX();
         int y = this.getY();
 

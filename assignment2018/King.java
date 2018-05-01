@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import assignment2018.codeprovided.PieceCode;
 
+/**
+ * The Knight Piece class inheriting PieceMovement 
+ * @author Danny
+ */
 public class King extends PieceMovement
 {
 
@@ -12,6 +16,10 @@ public class King extends PieceMovement
         super(PieceCode.KING, ix, iy, c, b);
     }
     
+    /**
+     * All the King's available moves are added to the movepool.
+     * @return movepool
+     */
     @Override
     public ArrayList<Move> availableMoves() 
     {

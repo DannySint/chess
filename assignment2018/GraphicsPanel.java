@@ -83,7 +83,7 @@ public class GraphicsPanel extends JPanel {
     public void paintComponent(Graphics g) 
     {
         //Display Board Squares
-        for (int i = 1; i < 9; i++) 
+        for (int i=1; i < 9; i++) 
         {
             for (int j = 1; j < 9; j++) 
             {
@@ -101,9 +101,9 @@ public class GraphicsPanel extends JPanel {
         }
 
         //Display Piece position on board
-        for (int i = 0; i < 8; i++) 
+        for (int i=0; i < 8; i++) 
         {
-            for (int j = 0; j < 8; j++) 
+            for (int j=0; j < 8; j++) 
             {
                 Piece p = board.getPiece(i, j);
                 if (p != null) 

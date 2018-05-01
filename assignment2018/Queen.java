@@ -23,7 +23,7 @@ public class Queen extends PieceMovement
         ArrayList<Move> movepool = new ArrayList<Move>();
         
         //UP
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x, y+i) != null) //if the queen has encountered resistance, stop adding moves 
                 {movepool.add(moveFull((x), (y+i)));}
@@ -32,7 +32,7 @@ public class Queen extends PieceMovement
         }
         
         //UP and RIGHT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x+i, y+i) != null) //if the queen has encountered resistance, stop adding moves 
                 {
@@ -45,7 +45,7 @@ public class Queen extends PieceMovement
         }
         
         //RIGHT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x+i, y) != null) //if the queen has encountered resistance, stop adding moves 
                 {
@@ -58,7 +58,7 @@ public class Queen extends PieceMovement
         }
         
         //DOWN and RIGHT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x+i, y-i) != null) //if the queen has encountered resistance, stop adding moves 
                 {
@@ -72,7 +72,7 @@ public class Queen extends PieceMovement
         
         
         //DOWN
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x, y-i) != null) //if the queen has encountered resistance, stop adding moves 
                 {
@@ -85,7 +85,7 @@ public class Queen extends PieceMovement
         }
         
         //DOWN and LEFT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x-i, y-i) != null) //if the queen has encountered resistance, stop adding moves 
                 {
@@ -99,7 +99,7 @@ public class Queen extends PieceMovement
         }
         
         //LEFT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x-i, y) != null) //if the queen has encountered resistance, stop adding moves 
                 {
@@ -112,7 +112,7 @@ public class Queen extends PieceMovement
         }
         
         //UP and LEFT
-        for (int i = 1; i < 7; i++)
+        for (int i=1; i < 7; i++)
         {
             if (moveFull(x-i, y+i) != null) //if the queen has encountered resistance, stop adding moves 
                 {

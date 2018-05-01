@@ -7,9 +7,10 @@ import assignment2018.codeprovided.Pieces;
 import assignment2018.codeprovided.Player;
 
 /**
- * This is the 
- * @author Admin
- *
+ * This is the class overriding the abstract class Player to allow the user to input their movement,
+ * This class validates that input, checks if the input move is available in the piece's movepool
+ * Then runs that move and sets the capture boolean if an enemy piece has been captured 
+ * @author Danny
  */
 public class HumanPlayer extends Player
 {
@@ -24,9 +25,9 @@ public class HumanPlayer extends Player
     }
 
     /**
-     * 
-     * @return true if the requested move exists within the piece's available moves
-     * @return false 
+     * Method overriding abstract to get the requested move, validate the move and then execute according to return
+     * @return true if the requested move exists within the piece's movepool.
+     * @return false if the requested move does not exist within the piece's movepool. 
      */
     @Override
     public boolean makeMove() 
@@ -51,6 +52,7 @@ public class HumanPlayer extends Player
         to = "h2";
         
         do {
+            //resets scanner's data
             from = "s";
             to = "";
             scanner = new Scanner(System.in);
@@ -60,9 +62,7 @@ public class HumanPlayer extends Player
             scanner = null;
             convertCoords();
             
-        } while ((convertCoords() == false) || (outOfRange()) || (pieceBelongsToPlayer() == false) );
-        //System.out.println("From: (" + jump[0] + ", " + jump[1] + ")");        
-        
+        } while ((convertCoords() == false) || (outOfRange()) || (pieceBelongsToPlayer() == false) );        
         return jump;
     }
     
@@ -80,18 +80,12 @@ public class HumanPlayer extends Player
         }
         return false;
     }
-    
-    public boolean pieceBelongsToPlayer()
-    {
-        for (int i=0; i<this.getPieces().getNumPieces(); i++)
-        {
-            if ((this.getPieces().getPiece(i).getX() == jump[0]) && (this.getPieces().getPiece(i).getY() == jump[1]))
-            {return true;}
-        }
-        System.out.println("The selected piece doesn't belong to you or doesn't contain anything.");
-        return false;
-    }
-    
+        
+    /**
+     * Ensures any coordinates ran through this function won't crash by causing an OutOfIndexArray error
+     * @return false if all coordinates are within range
+     * @return true if at least 1 coordinate is out of range 
+     */
     public boolean outOfRange()
     {
         for (int i=0; i<jump.length;i++)
@@ -102,9 +96,25 @@ public class HumanPlayer extends Player
                     return true;
                 }
         }
-        
         return false;
     }
+    
+    /**
+     * Checks whether the piece selected actually belongs to the player
+     * @return true if the piece is found to be a part of the pieceset of the player
+     * @return false if no pieces are found with matching x and y coordinates
+     */
+    public boolean pieceBelongsToPlayer()
+    {
+        for (int i=0; i<this.getPieces().getNumPieces(); i++)
+        {
+            if ((this.getPieces().getPiece(i).getX() == jump[0]) && (this.getPieces().getPiece(i).getY() == jump[1]))
+            {return true;}
+        }
+        System.out.println("The selected piece doesn't belong to you or doesn't contain anything.");
+        return false;
+    }
+
     
     /*public static void main(String[] args) 
     {
