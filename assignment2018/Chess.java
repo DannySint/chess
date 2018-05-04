@@ -2,6 +2,9 @@ package assignment2018;
 
 import assignment2018.codeprovided.Player;
 
+//images in correct folder
+//javac assignment2018/Chess.java
+//java assignment2018/Chess
 /**
  * Main class of Chess where the game runs off
  * 
@@ -20,7 +23,9 @@ public class Chess
     private Player black;
     private int turnNumber;
     private boolean legal;
-    private enum Winner {WHITE, BLACK, NONE};
+    
+    //public for testing
+    public enum Winner {WHITE, BLACK, NONE};
     private Winner winner;
 
     /**
@@ -37,7 +42,7 @@ public class Chess
         graphicsDisplay = new GraphicsDisplay(board);
         
         //construct 2 players
-        white = new RandomPlayer("White", board.getWhite(), board, black);
+        white = new AggressivePlayer("White", board.getWhite(), board, black);
         black = new AggressivePlayer("Black", board.getBlack(), board, white);
         
         white.setOpponent(black);

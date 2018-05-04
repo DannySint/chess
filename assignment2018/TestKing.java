@@ -90,7 +90,6 @@ public class TestKing
             legal = chess.warp(x, y, newX, newY);
             System.out.println(legal);
             turnNumber++;
-        //} while (!chess.kingTaken());
             chess.updateTextDisplay();
         } while (turnNumber < 13);   
     }

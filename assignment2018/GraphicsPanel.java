@@ -72,7 +72,8 @@ public class GraphicsPanel extends JPanel {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         JFrame frm = new JFrame();
         frm.setContentPane(new GraphicsPanel(new Board()));
         frm.pack();
@@ -91,7 +92,7 @@ public class GraphicsPanel extends JPanel {
                 {
                     g.setColor(Color.WHITE);
                 }
-                else 
+                else if ((i+j) % 2 != 0)
                 {
                     g.setColor(Color.GRAY);
                 }

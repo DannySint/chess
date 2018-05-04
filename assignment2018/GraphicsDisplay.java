@@ -54,7 +54,7 @@ public class GraphicsDisplay extends JFrame implements Display
         this.setSize(maxX,maxY);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setBackground(Color.GRAY);
+        this.setBackground(Color.WHITE);
         this.menuBar = new JMenuBar();
         this.menu = new JMenu("New Game");
         this.chessboard = new GraphicsPanel(board);
@@ -63,14 +63,19 @@ public class GraphicsDisplay extends JFrame implements Display
         labels = new JLabel[9][9];
         
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("Game...", true);
-        JMenu subMenu = new JMenu("New Game!", true);
-        subMenu.add("Human vs Human"); //add actionlisteners
-        subMenu.add("Human vs Random Player");
-        subMenu.add("Human vs Aggressive Player");
+        JMenu menu = new JMenu("New Game!", true);
+        JMenu subWhiteMenu = new JMenu("White", true);
+        subWhiteMenu.add("Human vs Human"); //add actionlisteners
+        subWhiteMenu.add("Human vs Random Player");
+        subWhiteMenu.add("Human vs Aggressive Player");
+        JMenu subBlackMenu = new JMenu("Black", true);
+        subBlackMenu.add("Human vs Human"); //add actionlisteners
+        subBlackMenu.add("Human vs Random Player");
+        subBlackMenu.add("Human vs Aggressive Player");
         menu.add("Exit");
         //subMenu.add("Sub Item One");
-        menu.add(subMenu);
+        menu.add(subWhiteMenu);
+        menu.add(subBlackMenu);
         menuBar.add(menu);
         setJMenuBar(menuBar);
         
