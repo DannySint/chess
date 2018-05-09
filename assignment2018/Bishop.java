@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import assignment2018.codeprovided.PieceCode;
 
+/**
+ * The Bishop class that can move diagonally in any direction so long as there is open space or any enemy.
+ * Uses the PieceMovement's moveFull method that grows the movepool until there is an out of range or the space is occupied. 
+ * @author Danny
+ */
 public class Bishop extends PieceMovement
 {
 
@@ -15,7 +20,7 @@ public class Bishop extends PieceMovement
     @Override
     public ArrayList<Move> availableMoves() 
     {
-        // obtain current co-ordinates
+        // obtain current coordinates
         int x = this.getX();
         int y = this.getY();
 

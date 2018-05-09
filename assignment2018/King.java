@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import assignment2018.codeprovided.PieceCode;
 
 /**
- * The Knight Piece class inheriting PieceMovement 
+ * The King class that can move 1 space in any direction.
+ * Uses the PieceMovement's moveSingle method that only adds the move to the movepool if it is valid. 
  * @author Danny
  */
+ 
 public class King extends PieceMovement
 {
 

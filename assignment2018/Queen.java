@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import assignment2018.codeprovided.PieceCode;
 
+/**
+ * The Queen class that can move diagonally and straight in any direction so long as there is open space or any enemy.
+ * Uses the PieceMovement's moveFull method that grows the movepool until there is an out of range or the space is occupied. 
+ * @author Danny
+ */
+
 public class Queen extends PieceMovement
 {
     

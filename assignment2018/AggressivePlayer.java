@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import assignment2018.codeprovided.Pieces;
 import assignment2018.codeprovided.Player;
+import java.lang.String; 
 
 /**
  * Class for an AggressivePlayer requests moves that would take the higher value piece
@@ -21,6 +22,10 @@ public class AggressivePlayer extends RandomPlayer
         super(name, pieces, board, opponent);
     }
     
+    /**
+     * Method to get a move. 
+     * This class activates the returnCoords and returns the move that captures the higher value piece.
+     */
     @Override
     public int[] requestMove()
     {

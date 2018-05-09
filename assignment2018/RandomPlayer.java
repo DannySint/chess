@@ -1,6 +1,7 @@
 package assignment2018;
 
 import java.util.ArrayList;
+import java.lang.String;
 
 import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.Pieces;

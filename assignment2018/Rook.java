@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import assignment2018.codeprovided.PieceCode;
 
 /**
- * Class representing Rooks
- * Rook extends from PieceMovement's methods that extends from Piece
- * The rook can move UP, RIGHT, DOWN, LEFT so there are 4 loops that break upon contact with another player 
+ * The Rook class that can move vertically or horizontally in any direction so long as there is open space or any enemy.
+ * Uses the PieceMovement's moveFull method that grows the movepool until there is an out of range or the space is occupied. 
  * @author Danny
- *
  */
+
 public class Rook extends PieceMovement {
 
     public Rook(int ix, int iy, int c, Board b) 

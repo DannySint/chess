@@ -1,13 +1,15 @@
-package assignment2018;
+package assignment2018.tests;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestKnight 
-{
+import assignment2018.Board;
+import assignment2018.Chess;
+import assignment2018.Move;
 
-    
-    Chess chess = new Chess();
+public class TestKnight 
+{    
+    Chess chess = new Chess("");
     int x, y, newX, newY = 0;
     Board board;
     Move move;

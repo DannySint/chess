@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -65,22 +67,72 @@ public class GraphicsDisplay extends JFrame implements Display
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("New Game!", true);
         JMenu subWhiteMenu = new JMenu("White", true);
-        subWhiteMenu.add("Human vs Human"); //add actionlisteners
-        subWhiteMenu.add("Human vs Random Player");
-        subWhiteMenu.add("Human vs Aggressive Player");
+        JMenuItem WhiteXHuman = new JMenuItem("White vs Human");
+        JMenuItem WhiteXRandom = new JMenuItem("White vs Random");
+        JMenuItem WhiteXAggro= new JMenuItem("White vs Aggressive");
+        subWhiteMenu.add(WhiteXHuman);
+        subWhiteMenu.add(WhiteXRandom);
+        subWhiteMenu.add(WhiteXAggro);
         JMenu subBlackMenu = new JMenu("Black", true);
-        subBlackMenu.add("Human vs Human"); //add actionlisteners
-        subBlackMenu.add("Human vs Random Player");
-        subBlackMenu.add("Human vs Aggressive Player");
-        menu.add("Exit");
+        JMenuItem BlackXHuman = new JMenuItem("Black vs Human");
+        JMenuItem BlackXRandom = new JMenuItem("Black vs Random");
+        JMenuItem BlackXAggro= new JMenuItem("Black vs Aggressive");
+        subBlackMenu.add(BlackXHuman);
+        subBlackMenu.add(BlackXRandom);
+        subBlackMenu.add(BlackXAggro);
+        
         //subMenu.add("Sub Item One");
         menu.add(subWhiteMenu);
         menu.add(subBlackMenu);
+        menu.add("Exit");
         menuBar.add(menu);
         setJMenuBar(menuBar);
         
-        
+        //event listeners
+        WhiteXHuman.addActionListener(new Listener());
+        BlackXHuman.addActionListener(new Listener());
     }
+    
+    private class Listener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+            switch(event.getActionCommand())
+            {
+            case "White vs Human" :
+                System.out.println(event.getActionCommand());
+                Chess chess2 = new Chess("HH");
+                chess2.run();
+                chess2.congratulations();
+                break;
+                
+            case "White vs Random" :
+                System.out.println(event.getActionCommand());
+                break;
+            
+            case "White vs Aggressive" :
+                System.out.println(event.getActionCommand());
+                break;
+                
+            case "Black vs Human" :
+                System.out.println(event.getActionCommand());
+                break;
+                
+            case "Black vs Random" :
+                System.out.println(event.getActionCommand());
+                break;
+            
+            case "Black vs Aggressive" :
+                System.out.println(event.getActionCommand());
+                break;
+            default:
+                break;
+                
+            }
+        }
+    }
+    
     public void displayBoard(Pieces pieces) {}
     public void showBoard(Board board)
     {
@@ -96,38 +148,8 @@ public class GraphicsDisplay extends JFrame implements Display
         this.board = board;
     }
     
-    public String coordsToPieceCode(Board board, int x, int y)
-    {
-        PieceCode pieceCode = new PieceCode();
-        if (board.getPiece(y, x) == null) {return null;}
-        switch(board.getPiece(y, x).getChar())
-        {
-            //white
-            case 'p': return "WHITE_PAWN";
-            case 'r': return "WHITE_ROOK";
-            case 'b': return "WHITE_BISHOP";
-            case 'n': return "WHITE_KNIGHT";
-            case 'q': return "WHITE_QUEEN";
-            case 'k': return "WHITE_QUEEN";
-            //black
-            case 'P': return "BLACK_PAWN";
-            case 'R': return "BLACK_ROOK";
-            case 'B': return "BLACK_BISHOP";
-            case 'N': return "BLACK_KNIGHT";
-            case 'Q': return "BLACK_QUEEN";
-            case 'K': return "BLACK_KING";
-        }
-        return null;
-    }
-    
     public void reset()
     {
         SwingUtilities.updateComponentTreeUI(this);
-    }
-    
-    public void clearBoard()
-    {
-        labels = null;
-        contentPane.removeAll();
     }
 }

@@ -1,7 +1,10 @@
-package assignment2018;
+package assignment2018.tests;
 
 import org.junit.Test;
 
+import assignment2018.Board;
+import assignment2018.Chess;
+import assignment2018.Move;
 import assignment2018.codeprovided.Pieces;
 import assignment2018.codeprovided.Player;
 
@@ -11,7 +14,7 @@ import org.junit.Before;
 
 public class TestPawnRook 
 {
-    Chess chess = new Chess();
+    Chess chess = new Chess("");
     int x, y, newX, newY = 0;
     Board board;
     Move move;

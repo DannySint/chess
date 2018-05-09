@@ -1,11 +1,11 @@
 package assignment2018;
 
 import java.util.ArrayList;
-
 import assignment2018.codeprovided.PieceCode;
 
 /**
- * The Knight Piece class inheriting PieceMovement 
+ * The Knight class that can move 2 spaces vertical/horizontal and then 1 space horizontal/vertical in any direction.
+ * Uses the PieceMovement's moveSingle method that only adds the move to the movepool if it is valid. 
  * @author Danny
  */
 public class Knight extends PieceMovement

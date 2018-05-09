@@ -1,13 +1,18 @@
-package assignment2018;
+package assignment2018.tests;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import assignment2018.Board;
+import assignment2018.Chess;
+import assignment2018.Move;
+import assignment2018.Chess.Winner;
+
 public class TestQueenCheckmate 
 {
-    Chess chess = new Chess();
+    Chess chess = new Chess("");
     int x, y, newX, newY = 0;
     Board board;
     Move move;

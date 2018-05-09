@@ -1,6 +1,12 @@
 package assignment2018;
 import assignment2018.codeprovided.*;
 
+/**
+ * TextDisplay Class that displays the state of the board after each go.
+ * Takes in both sets of pieces and then displays them.
+ * @author Danny
+ *
+ */
 public class TextDisplay implements Display
 {
     //instance variables

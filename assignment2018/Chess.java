@@ -1,13 +1,13 @@
 package assignment2018;
 
 import assignment2018.codeprovided.Player;
+import java.lang.String;
 
 //images in correct folder
 //javac assignment2018/Chess.java
 //java assignment2018/Chess
 /**
  * Main class of Chess where the game runs off
- * 
  * @author Danny
  * Start @date 19th April 2018
  * End @date 1st May 2018
@@ -18,21 +18,22 @@ public class Chess
     //instance variables
     private Board board;
     private TextDisplay display;
-    private GraphicsDisplay graphicsDisplay;
+    
     private Player white;
     private Player black;
     private int turnNumber;
     private boolean legal;
+    private String choice = "";
     
     //public for testing
     public enum Winner {WHITE, BLACK, NONE};
     private Winner winner;
-
+    private GraphicsDisplay graphicsDisplay;
     /**
      * Constructor for chess that constructs chess object with:
      * the board, the displays, the players with their pieces
      */
-    public Chess()
+    public Chess(String choice)
     {
         //construct board
         board = new Board();
@@ -42,8 +43,37 @@ public class Chess
         graphicsDisplay = new GraphicsDisplay(board);
         
         //construct 2 players
-        white = new AggressivePlayer("White", board.getWhite(), board, black);
-        black = new AggressivePlayer("Black", board.getBlack(), board, white);
+        if (choice.isEmpty())
+        {
+            white = new HumanPlayer("White", board.getWhite(), board, black);
+            black = new HumanPlayer("Black", board.getBlack(), board, white);
+        }
+        else 
+        {
+            switch(choice.substring(0, 1))
+            {
+            case "H" : white = new HumanPlayer("White", board.getWhite(), board, black);
+                break;
+            
+            case "R" :  white = new RandomPlayer("Random Player", board.getWhite(), board, black);
+                break;
+            
+            case "A" : white = new AggressivePlayer("Aggressive Player", board.getWhite(), board, black);
+                break;
+            }
+            
+            switch(choice.substring(1, 2))
+            {
+            case "H" : black = new HumanPlayer("Black", board.getBlack(), board, white);
+                break;
+            
+            case "R" :  black = new RandomPlayer("Random Player", board.getBlack(), board, white);
+                break;
+            
+            case "A" : black = new AggressivePlayer("Aggressive Player", board.getBlack(), board, white);
+                break;
+            }
+        }
         
         white.setOpponent(black);
         turnNumber = 0;
@@ -174,7 +204,7 @@ public class Chess
 	/**
      * Congratulations are in order to the grand winner of the 2018 Chess Tournament
      */
-    public void omedeto() //congratulations
+    public void congratulations() //congratulations
     {
         if (winner == Winner.BLACK) {System.out.println("Congratulations black team");}
         else if (winner == Winner.WHITE) {System.out.println("Congratulations to white team");}
@@ -183,8 +213,8 @@ public class Chess
 	
    public static void main(String[] args) 
     {
-       Chess chess = new Chess();
+       Chess chess = new Chess("");
        chess.run();
-       chess.omedeto(); //omedeto means congratulations
+       chess.congratulations();
     }
 }

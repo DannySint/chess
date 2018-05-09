@@ -15,6 +15,11 @@ import javax.swing.JPanel;
 import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.PieceCode;
 
+/**
+ * Class to draw the layout of the board and the images in their respective locations 
+ * @author Danny
+ *
+ */
 public class GraphicsPanel extends JPanel {
 
     private Board board;
@@ -39,20 +44,20 @@ public class GraphicsPanel extends JPanel {
         this.setPreferredSize(new Dimension(this.maxX, this.maxY));
         this.setBackground(Color.WHITE);
         this.board = board;
-
+        String path = "./src/assignment2018/images/";
         try {
-            this.blackKing = ImageIO.read(new File("images/BlackKing.png"));
-            this.blackQueen = ImageIO.read(new File("images/BlackQueen.png"));
-            this.blackRook = ImageIO.read(new File("images/BlackRook.png"));
-            this.blackBishop = ImageIO.read(new File("images/BlackBishop.png"));
-            this.blackKnight = ImageIO.read(new File("images/BlackKnight.png"));
-            this.blackPawn = ImageIO.read(new File("images/BlackPawn.png"));
-            this.whiteKing = ImageIO.read(new File("images/WhiteKing.png"));
-            this.whiteQueen = ImageIO.read(new File("images/WhiteQueen.png"));
-            this.whiteRook = ImageIO.read(new File("images/WhiteRook.png"));
-            this.whiteBishop = ImageIO.read(new File("images/WhiteBishop.png"));
-            this.whiteKnight = ImageIO.read(new File("images/WhiteKnight.png"));
-            this.whitePawn = ImageIO.read(new File("images/WhitePawn.png"));
+            this.blackKing = ImageIO.read(new File(path + "BlackKing.png"));
+            this.blackQueen = ImageIO.read(new File(path + "BlackQueen.png"));
+            this.blackRook = ImageIO.read(new File(path + "BlackRook.png"));
+            this.blackBishop = ImageIO.read(new File(path + "BlackBishop.png"));
+            this.blackKnight = ImageIO.read(new File(path + "BlackKnight.png"));
+            this.blackPawn = ImageIO.read(new File(path + "BlackPawn.png"));
+            this.whiteKing = ImageIO.read(new File(path + "WhiteKing.png"));
+            this.whiteQueen = ImageIO.read(new File(path + "WhiteQueen.png"));
+            this.whiteRook = ImageIO.read(new File(path + "WhiteRook.png"));
+            this.whiteBishop = ImageIO.read(new File(path + "WhiteBishop.png"));
+            this.whiteKnight = ImageIO.read(new File(path + "WhiteKnight.png"));
+            this.whitePawn = ImageIO.read(new File(path + "WhitePawn.png"));
             ;
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,7 +94,7 @@ public class GraphicsPanel extends JPanel {
             for (int j = 1; j < 9; j++) 
             {
                 if ((i + j) % 2 == 0) 
-                {
+                {   
                     g.setColor(Color.WHITE);
                 }
                 else if ((i+j) % 2 != 0)
