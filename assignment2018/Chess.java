@@ -208,7 +208,7 @@ public class Chess
     {
         if (winner == Winner.BLACK) {System.out.println("Congratulations black team");}
         else if (winner == Winner.WHITE) {System.out.println("Congratulations to white team");}
-        else {System.out.println("Nobody won or idk wtf happened");}
+        else {System.out.println("You ran the function chess.congratulations() without deciding a winner (chess.run())");}
     }
 	
    public static void main(String[] args) 

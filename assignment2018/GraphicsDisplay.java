@@ -98,6 +98,7 @@ public class GraphicsDisplay extends JFrame implements Display
         @Override
         public void actionPerformed(ActionEvent event)
         {
+            System.out.println(event.getActionCommand());
             switch(event.getActionCommand())
             {
             case "White vs Human" :
@@ -126,9 +127,15 @@ public class GraphicsDisplay extends JFrame implements Display
             case "Black vs Aggressive" :
                 System.out.println(event.getActionCommand());
                 break;
-            default:
+            
+            case "Exit" :
+                System.out.println(event.getActionCommand());
+                System.exit(1);
                 break;
                 
+            default:
+                System.out.println(event.getActionCommand());
+                break;
             }
         }
     }
